@@ -1,38 +1,26 @@
 import { Injectable } from '@nestjs/common';
 import { CreateAiDto } from './dto/create-ai.dto';
 import { UpdateAiDto } from './dto/update-ai.dto';
-import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
 export class AiService {
-  constructor(private readonly prisma: PrismaService) {}
   create(createAiDto: CreateAiDto) {
-    return this.prisma.aIQuery.createManyAndReturn({
-      data: createAiDto,
-    });
+    return 'This action adds a new ai';
   }
 
   findAll() {
-    return this.prisma.aIQuery.findMany();
+    return `This action returns all ai`;
   }
 
-  findOne(id: string) {
-    return this.prisma.aIQuery.findUnique({
-      where: { id: id },
-    });
+  findOne(id: number) {
+    return `This action returns a #${id} ai`;
   }
 
-  update(id: string, updateAiDto: UpdateAiDto) {
-    return this.prisma.aIQuery.update({
-      where: { id: id },
-      data: updateAiDto,
-    });
+  update(id: number, updateAiDto: UpdateAiDto) {
+    return `This action updates a #${id} ai`;
   }
 
-  remove(id: string) {
-    return this.prisma.aIQuery.update({
-      where: { id: id },
-      data: { deletedAt: new Date() },
-    });
+  remove(id: number) {
+    return `This action removes a #${id} ai`;
   }
 }
