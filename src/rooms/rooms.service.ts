@@ -1,26 +1,69 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateRoomDto } from './dto/create-room.dto';
 import { UpdateRoomDto } from './dto/update-room.dto';
 
 @Injectable()
 export class RoomsService {
-  create(createRoomDto: CreateRoomDto) {
-    return 'This action adds a new room';
+  constructor(private readonly prisma: PrismaService) {}
+
+  // Create a new room
+  async create(createRoomDto: CreateRoomDto) {
+    return await this.prisma.room.create({
+      data: createRoomDto,
+    });
   }
 
-  findAll() {
-    return `This action returns all rooms`;
+  // Get all rooms (excluding soft-deleted ones)
+  async findAll() {
+    return await this.prisma.room.findMany({
+      where: {
+        deletedAt: null, // Filter out deleted rooms
+      },
+    });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} room`;
+  // Get a single room by ID
+  async findOne(id: string) {
+    const room = await this.prisma.room.findUnique({
+      where: { id },
+    });
+
+    if (!room || room.deletedAt) {
+      throw new NotFoundException(`Room with ID ${id} not found`);
+    }
+
+    return room;
   }
 
-  update(id: number, updateRoomDto: UpdateRoomDto) {
-    return `This action updates a #${id} room`;
+  // Update a room by ID
+  async update(id: string, updateRoomDto: UpdateRoomDto) {
+    // Ensure room exists first
+    const existingRoom = await this.findOne(id);
+
+    if (!existingRoom) {
+      throw new NotFoundException(`Room with id ${id} not found`);
+    }
+
+    return await this.prisma.room.update({
+      where: { id },
+      data: updateRoomDto,
+    });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} room`;
+  // Soft delete a room (sets deletedAt)
+  async remove(id: string) {
+    const existingRoom = await this.findOne(id);
+
+    if (!existingRoom) {
+      throw new NotFoundException(`Room with id ${id} not found`);
+    }
+
+    return await this.prisma.room.update({
+      where: { id },
+      data: {
+        deletedAt: new Date(),
+      },
+    });
   }
 }
