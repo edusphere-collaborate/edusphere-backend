@@ -2,6 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { CreateRoomDto } from './dto/create-room.dto';
 import { UpdateRoomDto } from './dto/update-room.dto';
+import { CreateMessageDto } from './dto/create-message.dto';
 
 @Injectable()
 export class RoomsService {
@@ -135,6 +136,101 @@ export class RoomsService {
       where: { id },
       data: {
         deletedAt: new Date(),
+      },
+    });
+  }
+
+  // Create a message in a room
+  async createMessage(createMessageDto: CreateMessageDto) {
+    // Verify room exists
+    await this.findOne(createMessageDto.roomId);
+
+    // Verify user exists
+    const user = await this.prisma.user.findUnique({
+      where: { id: createMessageDto.userId, deletedAt: null },
+    });
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+
+    return await this.prisma.message.create({
+      data: {
+        content: createMessageDto.content,
+        userId: createMessageDto.userId,
+        roomId: createMessageDto.roomId,
+      },
+      include: {
+        user: {
+          select: {
+            id: true,
+            username: true,
+            firstName: true,
+            lastName: true,
+          },
+        },
+      },
+    });
+  }
+
+  // Get messages for a room with pagination
+  async getRoomMessages(roomId: string, skip: number = 0, take: number = 50) {
+    // Verify room exists
+    await this.findOne(roomId);
+
+    const validatedSkip = Math.max(0, skip);
+    const validatedTake = Math.min(Math.max(1, take), 100);
+
+    return await this.prisma.message.findMany({
+      where: {
+        roomId,
+        deletedAt: null,
+      },
+      skip: validatedSkip,
+      take: validatedTake,
+      orderBy: { createdAt: 'desc' },
+      include: {
+        user: {
+          select: {
+            id: true,
+            username: true,
+            firstName: true,
+            lastName: true,
+          },
+        },
+      },
+    });
+  }
+
+  // Add user to room
+  async addUserToRoom(roomId: string, userId: string) {
+    // Verify room exists
+    await this.findOne(roomId);
+
+    // Verify user exists
+    const user = await this.prisma.user.findUnique({
+      where: { id: userId, deletedAt: null },
+    });
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+
+    // Add user to room (using the many-to-many relation)
+    return await this.prisma.room.update({
+      where: { id: roomId },
+      data: {
+        users: {
+          connect: { id: userId },
+        },
+      },
+      include: {
+        users: {
+          select: {
+            id: true,
+            username: true,
+            firstName: true,
+            lastName: true,
+          },
+        },
       },
     });
   }

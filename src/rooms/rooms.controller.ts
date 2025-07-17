@@ -7,10 +7,12 @@ import {
   Param,
   Delete,
   NotFoundException,
+  Query,
 } from '@nestjs/common';
 import { RoomsService } from './rooms.service';
 import { CreateRoomDto } from './dto/create-room.dto';
 import { UpdateRoomDto } from './dto/update-room.dto';
+import { CreateMessageDto } from './dto/create-message.dto';
 
 @Controller('rooms')
 export class RoomsController {
@@ -100,6 +102,87 @@ export class RoomsController {
       stats: room._count,
       createdAt: room.createdAt,
       updatedAt: room.updatedAt,
+    };
+  }
+
+  /**
+   * POST /rooms/:id/messages
+   * Description: Send a message in a room.
+   * Request Body: { content, userId }
+   * Response: { id, roomId, userId, content, sentAt }
+   */
+  @Post(':id/messages')
+  async createMessage(
+    @Param('id') roomId: string,
+    @Body() createMessageDto: CreateMessageDto,
+  ) {
+    const messageData = {
+      ...createMessageDto,
+      roomId,
+    };
+
+    const message = await this.roomsService.createMessage(messageData);
+
+    return {
+      id: message.id,
+      roomId: message.roomId,
+      userId: message.userId,
+      content: message.content,
+      user: message.user,
+      sentAt: message.createdAt,
+    };
+  }
+
+  /**
+   * GET /rooms/:id/messages
+   * Description: Get messages for a specific room with pagination.
+   * Query Parameters: skip?, take?
+   * Response: [{ id, content, userId, user, sentAt }, ...]
+   */
+  @Get(':id/messages')
+  async getRoomMessages(
+    @Param('id') roomId: string,
+    @Query('skip') skip?: string,
+    @Query('take') take?: string,
+  ) {
+    const skipNumber = skip ? parseInt(skip, 10) : 0;
+    const takeNumber = take ? parseInt(take, 10) : 50;
+
+    const messages = await this.roomsService.getRoomMessages(
+      roomId,
+      skipNumber,
+      takeNumber,
+    );
+
+    return messages.map((msg) => ({
+      id: msg.id,
+      content: msg.content,
+      userId: msg.userId,
+      user: msg.user,
+      sentAt: msg.createdAt,
+    }));
+  }
+
+  /**
+   * POST /rooms/:id/join
+   * Description: Add a user to a room.
+   * Request Body: { userId }
+   * Response: { message, room }
+   */
+  @Post(':id/join')
+  async joinRoom(
+    @Param('id') roomId: string,
+    @Body() body: { userId: string },
+  ) {
+    const room = await this.roomsService.addUserToRoom(roomId, body.userId);
+
+    return {
+      message: 'User successfully joined the room',
+      room: {
+        id: room.id,
+        name: room.name,
+        users: room.users,
+      },
     };
   }
 
