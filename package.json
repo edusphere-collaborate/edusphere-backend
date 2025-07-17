@@ -17,7 +17,12 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "test:task": "./task/run-tests.sh",
+    "test:unit": "jest --config=task/jest.config.json --testPathPattern=unit-tests",
+    "test:integration": "jest --config=task/jest.config.json --testPathPattern=integration-tests", 
+    "test:performance": "jest --config=task/jest.config.json --testPathPattern=performance-tests",
+    "test:coverage": "jest --config=task/jest.config.json --coverage"
   },
   "dependencies": {
     "@nestjs/common": "^11.0.1",

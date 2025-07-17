@@ -7,10 +7,12 @@ import {
   Param,
   Delete,
   NotFoundException,
+  Query,
 } from '@nestjs/common';
 import { RoomsService } from './rooms.service';
 import { CreateRoomDto } from './dto/create-room.dto';
 import { UpdateRoomDto } from './dto/update-room.dto';
+import { CreateMessageDto } from './dto/create-message.dto';
 
 @Controller('rooms')
 export class RoomsController {
@@ -24,8 +26,6 @@ export class RoomsController {
    */
   @Post()
   async create(@Body() createRoomDto: CreateRoomDto) {
-    console.log(createRoomDto.slug);
-
     const room = await this.roomsService.create(createRoomDto);
 
     return {
@@ -50,8 +50,14 @@ export class RoomsController {
     return rooms.map((room) => ({
       id: room.id,
       name: room.name,
-      creatorId: room.creatorId,
+      description: room.description,
+      slug: room.slug,
+      creator: room.creator,
+      userCount: room._count.users,
+      messageCount: room._count.messages,
+      mediaCount: room._count.media,
       createdAt: room.createdAt,
+      updatedAt: room.updatedAt,
     }));
   }
 
@@ -75,21 +81,108 @@ export class RoomsController {
       throw new NotFoundException(`Room with ID ${id} not found`);
     }
 
-    // If the room has no messages property or it's not an array, return empty array
-    const messages = Array.isArray(room['messages'])
-      ? room['messages'].map((msg: any) => ({
-          id: msg.id as string,
-          content: msg.content as string,
-          userId: msg.userId as string,
-          sentAt: msg.createdAt as Date,
-        }))
-      : [];
+    // Map messages from the optimized query result
+    const messages =
+      room.messages?.map((msg) => ({
+        id: msg.id,
+        content: msg.content,
+        userId: msg.user.id,
+        username: msg.user.username,
+        sentAt: msg.createdAt,
+      })) || [];
 
     return {
       id: room.id,
       name: room.name,
-      creatorId: room.creatorId,
+      description: room.description,
+      slug: room.slug,
+      creator: room.creator,
+      users: room.users,
       messages,
+      stats: room._count,
+      createdAt: room.createdAt,
+      updatedAt: room.updatedAt,
+    };
+  }
+
+  /**
+   * POST /rooms/:id/messages
+   * Description: Send a message in a room.
+   * Request Body: { content, userId }
+   * Response: { id, roomId, userId, content, sentAt }
+   */
+  @Post(':id/messages')
+  async createMessage(
+    @Param('id') roomId: string,
+    @Body() createMessageDto: CreateMessageDto,
+  ) {
+    const messageData = {
+      ...createMessageDto,
+      roomId,
+    };
+
+    const message = await this.roomsService.createMessage(messageData);
+
+    return {
+      id: message.id,
+      roomId: message.roomId,
+      userId: message.userId,
+      content: message.content,
+      user: message.user,
+      sentAt: message.createdAt,
+    };
+  }
+
+  /**
+   * GET /rooms/:id/messages
+   * Description: Get messages for a specific room with pagination.
+   * Query Parameters: skip?, take?
+   * Response: [{ id, content, userId, user, sentAt }, ...]
+   */
+  @Get(':id/messages')
+  async getRoomMessages(
+    @Param('id') roomId: string,
+    @Query('skip') skip?: string,
+    @Query('take') take?: string,
+  ) {
+    const skipNumber = skip ? parseInt(skip, 10) : 0;
+    const takeNumber = take ? parseInt(take, 10) : 50;
+
+    const messages = await this.roomsService.getRoomMessages(
+      roomId,
+      skipNumber,
+      takeNumber,
+    );
+
+    return messages.map((msg) => ({
+      id: msg.id,
+      content: msg.content,
+      userId: msg.userId,
+      user: msg.user,
+      sentAt: msg.createdAt,
+    }));
+  }
+
+  /**
+   * POST /rooms/:id/join
+   * Description: Add a user to a room.
+   * Request Body: { userId }
+   * Response: { message, room }
+   */
+  @Post(':id/join')
+  async joinRoom(
+    @Param('id') roomId: string,
+    @Body() body: { userId: string },
+  ) {
+    const room = await this.roomsService.addUserToRoom(roomId, body.userId);
+
+    return {
+      message: 'User successfully joined the room',
+      room: {
+        id: room.id,
+        name: room.name,
+        users: room.users,
+      },
     };
   }
 
