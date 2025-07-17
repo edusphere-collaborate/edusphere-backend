@@ -1,4 +1,3 @@
-import { NotFoundException } from '@nestjs/common';
 import {
   ConnectedSocket,
   MessageBody,
@@ -7,7 +6,7 @@ import {
   WebSocketServer,
 } from '@nestjs/websockets';
 import { Server, Socket } from 'socket.io';
-import { RoomsService } from 'src/rooms/rooms.service';
+import { RoomsService } from '../rooms/rooms.service';
 import { SendMessageDto } from './dto/send-message.dto';
 import { JoinRoomDto } from './dto/join-room.dto';
 
@@ -50,9 +49,10 @@ export class RoomsGatewayGateway {
   @SubscribeMessage('send-message')
   handleSendMessage(
     @MessageBody() data: SendMessageDto,
-    @ConnectedSocket() client: Socket,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    @ConnectedSocket() _client: Socket,
   ) {
-    // const message = await this.roomService.
+    // TODO: Implement message handling
     console.log('Message received:', data);
   }
 }

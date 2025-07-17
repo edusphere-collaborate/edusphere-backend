@@ -1,0 +1,33 @@
+{
+  "moduleFileExtensions": ["js", "json", "ts"],
+  "rootDir": "../",
+  "testMatch": ["<rootDir>/task/**/*.spec.ts"],
+  "transform": {
+    "^.+\\.(t|j)s$": "ts-jest"
+  },
+  "collectCoverageFrom": [
+    "src/**/*.(t|j)s",
+    "!src/**/*.spec.ts",
+    "!src/**/*.interface.ts",
+    "!src/main.ts"
+  ],
+  "coverageDirectory": "task/reports/coverage",
+  "testEnvironment": "node",
+  "setupFilesAfterEnv": ["<rootDir>/task/utils/test-setup.ts"],
+  "testTimeout": 30000,
+  "verbose": true,
+  "collectCoverage": true,
+  "coverageReporters": ["text", "lcov", "html"],
+  "moduleNameMapping": {
+    "^@/(.*)$": "<rootDir>/src/$1"
+  },
+  "modulePathIgnorePatterns": ["<rootDir>/dist/"],
+  "coverageThreshold": {
+    "global": {
+      "branches": 70,
+      "functions": 70,
+      "lines": 70,
+      "statements": 70
+    }
+  }
+}
