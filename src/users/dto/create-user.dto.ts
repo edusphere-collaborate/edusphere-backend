@@ -7,16 +7,16 @@ import {
 } from 'class-validator';
 
 export class CreateUserDto {
-  @IsString({ message: 'Username must nest be a string' })
+  @IsString({ message: 'Username must not be a string' })
   @IsNotEmpty({ message: 'Username must not be empty' })
   @MaxLength(30)
   username: string;
 
-  @IsString({ message: 'First Name must nest be a string' })
+  @IsString({ message: 'First Name must not be a string' })
   @IsNotEmpty({ message: 'First Name must not be empty' })
   firstName: string;
 
-  @IsString({ message: 'Last Name must nest be a string' })
+  @IsString({ message: 'Last Name must not be a string' })
   @IsNotEmpty({ message: 'Last Name must not be empty' })
   lastName: string;
 
