@@ -1,34 +1,24 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+// 3. ai/ai.controller.ts
+import { Controller, Post, Body } from '@nestjs/common';
 import { AiService } from './ai.service';
-import { CreateAiDto } from './dto/create-ai.dto';
-import { UpdateAiDto } from './dto/update-ai.dto';
+import { CreateAiQueryDto } from './dto/create-ai.dto';
 
 @Controller('ai')
 export class AiController {
   constructor(private readonly aiService: AiService) {}
 
-  @Post()
-  create(@Body() createAiDto: CreateAiDto) {
-    return this.aiService.create(createAiDto);
-  }
+  /**
+   * POST /ai/query
+   * Submit academic query to AI assistant
+   * Body: { userId, query }
+   * Returns: { id, userId, query, response, createdAt }
+   */
+  @Post('query')
+  async create(@Body() createAiQueryDto: CreateAiQueryDto) {
+    const query = await this.aiService.create(createAiQueryDto);
 
-  @Get()
-  findAll() {
-    return this.aiService.findAll();
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.aiService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateAiDto: UpdateAiDto) {
-    return this.aiService.update(+id, updateAiDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.aiService.remove(+id);
+    return {
+      query,
+    };
   }
 }

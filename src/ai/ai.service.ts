@@ -1,26 +1,51 @@
-import { Injectable } from '@nestjs/common';
-import { CreateAiDto } from './dto/create-ai.dto';
-import { UpdateAiDto } from './dto/update-ai.dto';
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { CreateAiQueryDto } from './dto/create-ai.dto';
+
+import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
 export class AiService {
-  create(createAiDto: CreateAiDto) {
-    return 'This action adds a new ai';
+  constructor(private readonly prismaService: PrismaService) {}
+  async create(createAiDto: CreateAiQueryDto) {
+    return await this.prismaService.aIQuery.create({
+      data: {
+        userId: createAiDto.userId,
+        query: createAiDto.query,
+      },
+    });
   }
 
-  findAll() {
-    return `This action returns all ai`;
+  async findAll() {
+    return await this.prismaService.aIQuery.findMany({
+      where: { deletedAt: null },
+    });
+  }
+  async findOne(id: string) {
+    const query = await this.prismaService.aIQuery.findUnique({
+      where: { id },
+    });
+
+    if (!query || query.deletedAt) {
+      throw new NotFoundException(`AI query with ID ${id} not found`);
+    }
+
+    return query;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} ai`;
-  }
+  async remove(id: string) {
+    const existing = await this.prismaService.aIQuery.findFirst({
+      where: { id },
+    });
 
-  update(id: number, updateAiDto: UpdateAiDto) {
-    return `This action updates a #${id} ai`;
-  }
+    if (!existing) {
+      throw new NotFoundException();
+    }
 
-  remove(id: number) {
-    return `This action removes a #${id} ai`;
+    return await this.prismaService.aIQuery.update({
+      where: { id },
+      data: {
+        deletedAt: new Date(),
+      },
+    });
   }
 }
