@@ -43,7 +43,7 @@ export class UsersService {
         password: hashedPassword,
         firstName: firstName || '',
         lastName: lastName || '',
-        role: 'USER', // Default role, adjust as needed
+        role: 'User', // Default role, adjust as needed
       },
       select: {
         id: true,

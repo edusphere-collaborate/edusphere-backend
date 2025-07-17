@@ -14,6 +14,7 @@ import * as bcrypt from 'bcrypt';
 interface JwtPayload {
   sub: string;
   email: string;
+  isAdmin: boolean;
 }
 
 @Injectable()
@@ -26,8 +27,12 @@ export class AuthService {
   /**
    * Central method to create token using standard payload
    */
-  private async generateToken(user: { id: string; email: string }) {
-    const payload: JwtPayload = { sub: user.id, email: user.email };
+  private async generateToken(user: { id: string; email: string; role: any }) {
+    const payload: JwtPayload = { 
+      sub: user.id, 
+      email: user.email,
+      isAdmin: user.role === 'ADMIN'
+    };
     return this.jwtService.signAsync(payload);
   }
 
@@ -66,7 +71,7 @@ export class AuthService {
         password: hashedPassword,
         firstName: firstName || '',
         lastName: lastName || '',
-        role: 'USER', // Default role, adjust as needed
+        role: 'User', // Default role, adjust as needed
       },
       select: {
         id: true,
