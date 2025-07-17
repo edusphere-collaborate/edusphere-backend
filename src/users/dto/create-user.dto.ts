@@ -1,30 +1,33 @@
 import {
   IsEmail,
   IsNotEmpty,
+  IsOptional,
   IsString,
   MaxLength,
   MinLength,
 } from 'class-validator';
 
 export class CreateUserDto {
-  @IsString({ message: 'Username must nest be a string' })
-  @IsNotEmpty({ message: 'Username must not be empty' })
+  @IsString()
+  @IsNotEmpty()
   @MaxLength(30)
   username: string;
 
-  @IsString({ message: 'First Name must nest be a string' })
-  @IsNotEmpty({ message: 'First Name must not be empty' })
-  firstName: string;
+  @IsString()
+  @IsOptional()
+  firstName?: string;
 
-  @IsString({ message: 'Last Name must nest be a string' })
-  @IsNotEmpty({ message: 'Last Name must not be empty' })
-  lastName: string;
+  @IsString()
+  @IsOptional()
+  lastName?: string;
 
   @IsEmail()
+  @IsNotEmpty()
   @MaxLength(50)
   email: string;
 
-  @IsString({ message: 'password must be string' })
+  @IsString()
+  @IsNotEmpty()
   @MinLength(6)
   password: string;
 }

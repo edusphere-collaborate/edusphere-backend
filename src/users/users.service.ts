@@ -1,16 +1,10 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 
 @Injectable()
 export class UsersService {
   constructor(private readonly prismaService: PrismaService) {}
-
-  // Create a new user
-  async create(createUserDto: CreateUserDto) {
-    return await this.prismaService.user.create({ data: createUserDto });
-  }
 
   // Find all users (e.g., admin panel)
   async findAll() {
