@@ -7,10 +7,14 @@ import {
   Patch,
   Delete,
   Query,
+  UseGuards,
+  Req,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
-import { CreateUserDto } from './dto/create-user.dto';
+import { RegisterUserDto } from '../auth/dto/register-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { JWTAuthGuard } from '../auth/guards/jwt.guard';
+import { Request } from 'express';
 
 @Controller('users')
 export class UsersController {
@@ -18,38 +22,54 @@ export class UsersController {
 
   /**
    * POST /users
-   * Description: Create a new user (e.g., for registration)
+   * Description: Create a new user (admin only)
+   * Headers: Authorization: Bearer <token>
    * Request Body: { username, firstName, lastName, email, password }
-   * Response: { id, username, firstName, lastName, email, createdAt }
+   * Response: { id, username, firstName, lastName, email, role, createdAt }
    */
   @Post()
-  async create(@Body() createUserDto: CreateUserDto) {
-    const user = await this.usersService.create(createUserDto);
-    // Only return safe fields
+  @UseGuards(JWTAuthGuard)
+  async create(@Req() req: Request, @Body() createUserDto: RegisterUserDto) {
+    const user = req.user as any;
+    if (!user || !user.isAdmin) {
+      throw new UnauthorizedException('Admin access required');
+    }
+
+    const newUser = await this.usersService.create(createUserDto);
     return {
-      id: user.id,
-      username: user.username,
-      firstName: user.firstName,
-      lastName: user.lastName,
-      email: user.email,
-      role: user.role,
-      createdAt: user.createdAt,
+      id: newUser.id,
+      username: newUser.username,
+      firstName: newUser.firstName,
+      lastName: newUser.lastName,
+      email: newUser.email,
+      role: newUser.role,
+      createdAt: newUser.createdAt,
     };
   }
 
   /**
    * GET /users
-   * Description: Get all users with pagination
+   * Description: Get all users with pagination (admin only)
+   * Headers: Authorization: Bearer <token>
    * Query Parameters: skip?, take?
    * Response: [{ id, username, firstName, lastName, email, role, createdAt }, ...]
    */
   @Get()
-  async findAll(@Query('skip') skip?: string, @Query('take') take?: string) {
+  @UseGuards(JWTAuthGuard)
+  async findAll(
+    @Req() req: Request,
+    @Query('skip') skip?: string,
+    @Query('take') take?: string,
+  ) {
+    const user = req.user as any;
+    if (!user || !user.isAdmin) {
+      throw new UnauthorizedException('Admin access required');
+    }
+
     const skipNumber = skip ? parseInt(skip, 10) : 0;
     const takeNumber = take ? parseInt(take, 10) : 50;
 
     const users = await this.usersService.findAll(skipNumber, takeNumber);
-    // Return only public profiles
     return users.map((user) => ({
       id: user.id,
       username: user.username,
@@ -63,30 +83,37 @@ export class UsersController {
 
   /**
    * GET /users/:id
-   * Description: Get detailed profile of a user
-   * Response: { id, username, firstName, lastName, email, role, rooms, createdRooms, stats, createdAt }
+   * Description: Get detailed profile of a user (authenticated user or admin)
+   * Headers: Authorization: Bearer <token>
+   * Response: { id, username, firstName, lastName, email, role, rooms, createdRooms, stats, createdAt, updatedAt }
    */
   @Get(':id')
-  async findOne(@Param('id') id: string) {
-    const user = await this.usersService.findOne(id);
+  @UseGuards(JWTAuthGuard)
+  async findOne(@Req() req: Request, @Param('id') id: string) {
+    const user = req.user as any;
+    if (!user || (!user.isAdmin && user.id !== id)) {
+      throw new UnauthorizedException('Unauthorized access to profile');
+    }
+
+    const profile = await this.usersService.findOne(id);
     return {
-      id: user.id,
-      username: user.username,
-      firstName: user.firstName,
-      lastName: user.lastName,
-      email: user.email,
-      role: user.role,
-      rooms: user.rooms,
-      createdRooms: user.createdRooms,
-      stats: user._count,
-      createdAt: user.createdAt,
-      updatedAt: user.updatedAt,
+      id: profile.id,
+      username: profile.username,
+      firstName: profile.firstName,
+      lastName: profile.lastName,
+      email: profile.email,
+      role: profile.role,
+      rooms: profile.rooms,
+      createdRooms: profile.createdRooms,
+      stats: profile._count,
+      createdAt: profile.createdAt,
+      updatedAt: profile.updatedAt,
     };
   }
 
   /**
    * GET /users/:id/public
-   * Description: Get public profile of a user (limited information)
+   * Description: Get public profile of a user (limited information, public access)
    * Response: { id, username, firstName, lastName, createdAt }
    */
   @Get(':id/public')
@@ -103,32 +130,50 @@ export class UsersController {
 
   /**
    * PATCH /users/:id
-   * Description: Update user profile
+   * Description: Update user profile (authenticated user or admin)
+   * Headers: Authorization: Bearer <token>
    * Request Body: { username?, firstName?, lastName?, email? }
-   * Response: { id, username, firstName, lastName, email, updatedAt }
+   * Response: { id, username, firstName, lastName, email, role, updatedAt }
    */
   @Patch(':id')
-  async update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    const user = await this.usersService.update(id, updateUserDto);
+  @UseGuards(JWTAuthGuard)
+  async update(
+    @Req() req: Request,
+    @Param('id') id: string,
+    @Body() updateUserDto: UpdateUserDto,
+  ) {
+    const user = req.user as any;
+    if (!user || (!user.isAdmin && user.id !== id)) {
+      throw new UnauthorizedException('Unauthorized access to profile');
+    }
+
+    const updatedUser = await this.usersService.update(id, updateUserDto);
     return {
-      id: user.id,
-      username: user.username,
-      firstName: user.firstName,
-      lastName: user.lastName,
-      email: user.email,
-      role: user.role,
-      updatedAt: user.updatedAt,
+      id: updatedUser.id,
+      username: updatedUser.username,
+      firstName: updatedUser.firstName,
+      lastName: updatedUser.lastName,
+      email: updatedUser.email,
+      role: updatedUser.role,
+      updatedAt: updatedUser.updatedAt,
     };
   }
 
   /**
    * DELETE /users/:id
-   * Description: Soft delete a user
+   * Description: Soft delete a user (admin only)
+   * Headers: Authorization: Bearer <token>
    * Response: { message }
    */
   @Delete(':id')
-  async remove(@Param('id') id: string) {
+  @UseGuards(JWTAuthGuard)
+  async remove(@Req() req: Request, @Param('id') id: string) {
+    const user = req.user as any;
+    if (!user || !user.isAdmin) {
+      throw new UnauthorizedException('Admin access required');
+    }
+
     await this.usersService.remove(id);
-    return { message: `User with ID ${id} was successfully soft-deleted.` };
+    return { message: `User with ID ${id} was successfully soft-deleted` };
   }
 }

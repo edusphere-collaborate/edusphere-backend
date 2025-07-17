@@ -1264,19 +1264,19 @@ export namespace Prisma {
    */
 
   export type UserCountOutputType = {
-    rooms: number
-    createdRooms: number
-    messages: number
     aiQueries: number
     media: number
+    messages: number
+    createdRooms: number
+    rooms: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    rooms?: boolean | UserCountOutputTypeCountRoomsArgs
-    createdRooms?: boolean | UserCountOutputTypeCountCreatedRoomsArgs
-    messages?: boolean | UserCountOutputTypeCountMessagesArgs
     aiQueries?: boolean | UserCountOutputTypeCountAiQueriesArgs
     media?: boolean | UserCountOutputTypeCountMediaArgs
+    messages?: boolean | UserCountOutputTypeCountMessagesArgs
+    createdRooms?: boolean | UserCountOutputTypeCountCreatedRoomsArgs
+    rooms?: boolean | UserCountOutputTypeCountRoomsArgs
   }
 
   // Custom InputTypes
@@ -1293,15 +1293,15 @@ export namespace Prisma {
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountRoomsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: RoomWhereInput
+  export type UserCountOutputTypeCountAiQueriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AIQueryWhereInput
   }
 
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountCreatedRoomsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: RoomWhereInput
+  export type UserCountOutputTypeCountMediaArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MediaWhereInput
   }
 
   /**
@@ -1314,15 +1314,15 @@ export namespace Prisma {
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountAiQueriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: AIQueryWhereInput
+  export type UserCountOutputTypeCountCreatedRoomsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RoomWhereInput
   }
 
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountMediaArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: MediaWhereInput
+  export type UserCountOutputTypeCountRoomsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RoomWhereInput
   }
 
 
@@ -1331,15 +1331,15 @@ export namespace Prisma {
    */
 
   export type RoomCountOutputType = {
-    users: number
-    messages: number
     media: number
+    messages: number
+    users: number
   }
 
   export type RoomCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    users?: boolean | RoomCountOutputTypeCountUsersArgs
-    messages?: boolean | RoomCountOutputTypeCountMessagesArgs
     media?: boolean | RoomCountOutputTypeCountMediaArgs
+    messages?: boolean | RoomCountOutputTypeCountMessagesArgs
+    users?: boolean | RoomCountOutputTypeCountUsersArgs
   }
 
   // Custom InputTypes
@@ -1356,8 +1356,8 @@ export namespace Prisma {
   /**
    * RoomCountOutputType without action
    */
-  export type RoomCountOutputTypeCountUsersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: UserWhereInput
+  export type RoomCountOutputTypeCountMediaArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MediaWhereInput
   }
 
   /**
@@ -1370,8 +1370,8 @@ export namespace Prisma {
   /**
    * RoomCountOutputType without action
    */
-  export type RoomCountOutputTypeCountMediaArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: MediaWhereInput
+  export type RoomCountOutputTypeCountUsersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: UserWhereInput
   }
 
 
@@ -1583,11 +1583,11 @@ export namespace Prisma {
     updatedAt?: boolean
     role?: boolean
     deletedAt?: boolean
-    rooms?: boolean | User$roomsArgs<ExtArgs>
-    createdRooms?: boolean | User$createdRoomsArgs<ExtArgs>
-    messages?: boolean | User$messagesArgs<ExtArgs>
     aiQueries?: boolean | User$aiQueriesArgs<ExtArgs>
     media?: boolean | User$mediaArgs<ExtArgs>
+    messages?: boolean | User$messagesArgs<ExtArgs>
+    createdRooms?: boolean | User$createdRoomsArgs<ExtArgs>
+    rooms?: boolean | User$roomsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -1632,11 +1632,11 @@ export namespace Prisma {
 
   export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "username" | "firstName" | "lastName" | "email" | "password" | "createdAt" | "updatedAt" | "role" | "deletedAt", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    rooms?: boolean | User$roomsArgs<ExtArgs>
-    createdRooms?: boolean | User$createdRoomsArgs<ExtArgs>
-    messages?: boolean | User$messagesArgs<ExtArgs>
     aiQueries?: boolean | User$aiQueriesArgs<ExtArgs>
     media?: boolean | User$mediaArgs<ExtArgs>
+    messages?: boolean | User$messagesArgs<ExtArgs>
+    createdRooms?: boolean | User$createdRoomsArgs<ExtArgs>
+    rooms?: boolean | User$roomsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -1645,11 +1645,11 @@ export namespace Prisma {
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
     objects: {
-      rooms: Prisma.$RoomPayload<ExtArgs>[]
-      createdRooms: Prisma.$RoomPayload<ExtArgs>[]
-      messages: Prisma.$MessagePayload<ExtArgs>[]
       aiQueries: Prisma.$AIQueryPayload<ExtArgs>[]
       media: Prisma.$MediaPayload<ExtArgs>[]
+      messages: Prisma.$MessagePayload<ExtArgs>[]
+      createdRooms: Prisma.$RoomPayload<ExtArgs>[]
+      rooms: Prisma.$RoomPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -2056,11 +2056,11 @@ export namespace Prisma {
    */
   export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    rooms<T extends User$roomsArgs<ExtArgs> = {}>(args?: Subset<T, User$roomsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RoomPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    createdRooms<T extends User$createdRoomsArgs<ExtArgs> = {}>(args?: Subset<T, User$createdRoomsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RoomPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    messages<T extends User$messagesArgs<ExtArgs> = {}>(args?: Subset<T, User$messagesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     aiQueries<T extends User$aiQueriesArgs<ExtArgs> = {}>(args?: Subset<T, User$aiQueriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AIQueryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     media<T extends User$mediaArgs<ExtArgs> = {}>(args?: Subset<T, User$mediaArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MediaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    messages<T extends User$messagesArgs<ExtArgs> = {}>(args?: Subset<T, User$messagesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    createdRooms<T extends User$createdRoomsArgs<ExtArgs> = {}>(args?: Subset<T, User$createdRoomsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RoomPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    rooms<T extends User$roomsArgs<ExtArgs> = {}>(args?: Subset<T, User$roomsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RoomPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2488,78 +2488,6 @@ export namespace Prisma {
   }
 
   /**
-   * User.rooms
-   */
-  export type User$roomsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Room
-     */
-    select?: RoomSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Room
-     */
-    omit?: RoomOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: RoomInclude<ExtArgs> | null
-    where?: RoomWhereInput
-    orderBy?: RoomOrderByWithRelationInput | RoomOrderByWithRelationInput[]
-    cursor?: RoomWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: RoomScalarFieldEnum | RoomScalarFieldEnum[]
-  }
-
-  /**
-   * User.createdRooms
-   */
-  export type User$createdRoomsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Room
-     */
-    select?: RoomSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Room
-     */
-    omit?: RoomOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: RoomInclude<ExtArgs> | null
-    where?: RoomWhereInput
-    orderBy?: RoomOrderByWithRelationInput | RoomOrderByWithRelationInput[]
-    cursor?: RoomWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: RoomScalarFieldEnum | RoomScalarFieldEnum[]
-  }
-
-  /**
-   * User.messages
-   */
-  export type User$messagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Message
-     */
-    select?: MessageSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Message
-     */
-    omit?: MessageOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: MessageInclude<ExtArgs> | null
-    where?: MessageWhereInput
-    orderBy?: MessageOrderByWithRelationInput | MessageOrderByWithRelationInput[]
-    cursor?: MessageWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: MessageScalarFieldEnum | MessageScalarFieldEnum[]
-  }
-
-  /**
    * User.aiQueries
    */
   export type User$aiQueriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2605,6 +2533,78 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: MediaScalarFieldEnum | MediaScalarFieldEnum[]
+  }
+
+  /**
+   * User.messages
+   */
+  export type User$messagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Message
+     */
+    select?: MessageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Message
+     */
+    omit?: MessageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MessageInclude<ExtArgs> | null
+    where?: MessageWhereInput
+    orderBy?: MessageOrderByWithRelationInput | MessageOrderByWithRelationInput[]
+    cursor?: MessageWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MessageScalarFieldEnum | MessageScalarFieldEnum[]
+  }
+
+  /**
+   * User.createdRooms
+   */
+  export type User$createdRoomsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Room
+     */
+    select?: RoomSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Room
+     */
+    omit?: RoomOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RoomInclude<ExtArgs> | null
+    where?: RoomWhereInput
+    orderBy?: RoomOrderByWithRelationInput | RoomOrderByWithRelationInput[]
+    cursor?: RoomWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: RoomScalarFieldEnum | RoomScalarFieldEnum[]
+  }
+
+  /**
+   * User.rooms
+   */
+  export type User$roomsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Room
+     */
+    select?: RoomSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Room
+     */
+    omit?: RoomOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RoomInclude<ExtArgs> | null
+    where?: RoomWhereInput
+    orderBy?: RoomOrderByWithRelationInput | RoomOrderByWithRelationInput[]
+    cursor?: RoomWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: RoomScalarFieldEnum | RoomScalarFieldEnum[]
   }
 
   /**
@@ -2814,10 +2814,10 @@ export namespace Prisma {
     updatedAt?: boolean
     deletedAt?: boolean
     creatorId?: boolean
+    media?: boolean | Room$mediaArgs<ExtArgs>
+    messages?: boolean | Room$messagesArgs<ExtArgs>
     creator?: boolean | UserDefaultArgs<ExtArgs>
     users?: boolean | Room$usersArgs<ExtArgs>
-    messages?: boolean | Room$messagesArgs<ExtArgs>
-    media?: boolean | Room$mediaArgs<ExtArgs>
     _count?: boolean | RoomCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["room"]>
 
@@ -2858,10 +2858,10 @@ export namespace Prisma {
 
   export type RoomOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "slug" | "createdAt" | "updatedAt" | "deletedAt" | "creatorId", ExtArgs["result"]["room"]>
   export type RoomInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    media?: boolean | Room$mediaArgs<ExtArgs>
+    messages?: boolean | Room$messagesArgs<ExtArgs>
     creator?: boolean | UserDefaultArgs<ExtArgs>
     users?: boolean | Room$usersArgs<ExtArgs>
-    messages?: boolean | Room$messagesArgs<ExtArgs>
-    media?: boolean | Room$mediaArgs<ExtArgs>
     _count?: boolean | RoomCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type RoomIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2874,10 +2874,10 @@ export namespace Prisma {
   export type $RoomPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Room"
     objects: {
+      media: Prisma.$MediaPayload<ExtArgs>[]
+      messages: Prisma.$MessagePayload<ExtArgs>[]
       creator: Prisma.$UserPayload<ExtArgs>
       users: Prisma.$UserPayload<ExtArgs>[]
-      messages: Prisma.$MessagePayload<ExtArgs>[]
-      media: Prisma.$MediaPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -3282,10 +3282,10 @@ export namespace Prisma {
    */
   export interface Prisma__RoomClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    media<T extends Room$mediaArgs<ExtArgs> = {}>(args?: Subset<T, Room$mediaArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MediaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    messages<T extends Room$messagesArgs<ExtArgs> = {}>(args?: Subset<T, Room$messagesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     creator<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     users<T extends Room$usersArgs<ExtArgs> = {}>(args?: Subset<T, Room$usersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    messages<T extends Room$messagesArgs<ExtArgs> = {}>(args?: Subset<T, Room$messagesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    media<T extends Room$mediaArgs<ExtArgs> = {}>(args?: Subset<T, Room$mediaArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MediaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3719,27 +3719,27 @@ export namespace Prisma {
   }
 
   /**
-   * Room.users
+   * Room.media
    */
-  export type Room$usersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Room$mediaArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the User
+     * Select specific fields to fetch from the Media
      */
-    select?: UserSelect<ExtArgs> | null
+    select?: MediaSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the User
+     * Omit specific fields from the Media
      */
-    omit?: UserOmit<ExtArgs> | null
+    omit?: MediaOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: UserInclude<ExtArgs> | null
-    where?: UserWhereInput
-    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
-    cursor?: UserWhereUniqueInput
+    include?: MediaInclude<ExtArgs> | null
+    where?: MediaWhereInput
+    orderBy?: MediaOrderByWithRelationInput | MediaOrderByWithRelationInput[]
+    cursor?: MediaWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
+    distinct?: MediaScalarFieldEnum | MediaScalarFieldEnum[]
   }
 
   /**
@@ -3767,27 +3767,27 @@ export namespace Prisma {
   }
 
   /**
-   * Room.media
+   * Room.users
    */
-  export type Room$mediaArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Room$usersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Media
+     * Select specific fields to fetch from the User
      */
-    select?: MediaSelect<ExtArgs> | null
+    select?: UserSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Media
+     * Omit specific fields from the User
      */
-    omit?: MediaOmit<ExtArgs> | null
+    omit?: UserOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: MediaInclude<ExtArgs> | null
-    where?: MediaWhereInput
-    orderBy?: MediaOrderByWithRelationInput | MediaOrderByWithRelationInput[]
-    cursor?: MediaWhereUniqueInput
+    include?: UserInclude<ExtArgs> | null
+    where?: UserWhereInput
+    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
+    cursor?: UserWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: MediaScalarFieldEnum | MediaScalarFieldEnum[]
+    distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
   }
 
   /**
@@ -3989,8 +3989,8 @@ export namespace Prisma {
     deletedAt?: boolean
     userId?: boolean
     roomId?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
     room?: boolean | RoomDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["message"]>
 
   export type MessageSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -4001,8 +4001,8 @@ export namespace Prisma {
     deletedAt?: boolean
     userId?: boolean
     roomId?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
     room?: boolean | RoomDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["message"]>
 
   export type MessageSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -4013,8 +4013,8 @@ export namespace Prisma {
     deletedAt?: boolean
     userId?: boolean
     roomId?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
     room?: boolean | RoomDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["message"]>
 
   export type MessageSelectScalar = {
@@ -4029,23 +4029,23 @@ export namespace Prisma {
 
   export type MessageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "content" | "createdAt" | "updatedAt" | "deletedAt" | "userId" | "roomId", ExtArgs["result"]["message"]>
   export type MessageInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
     room?: boolean | RoomDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }
   export type MessageIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
     room?: boolean | RoomDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }
   export type MessageIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
     room?: boolean | RoomDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }
 
   export type $MessagePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Message"
     objects: {
-      user: Prisma.$UserPayload<ExtArgs>
       room: Prisma.$RoomPayload<ExtArgs>
+      user: Prisma.$UserPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -4449,8 +4449,8 @@ export namespace Prisma {
    */
   export interface Prisma__MessageClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     room<T extends RoomDefaultArgs<ExtArgs> = {}>(args?: Subset<T, RoomDefaultArgs<ExtArgs>>): Prisma__RoomClient<$Result.GetResult<Prisma.$RoomPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5081,8 +5081,8 @@ export namespace Prisma {
     updatedAt?: boolean
     userId?: boolean
     roomId?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
     room?: boolean | RoomDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["media"]>
 
   export type MediaSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -5093,8 +5093,8 @@ export namespace Prisma {
     updatedAt?: boolean
     userId?: boolean
     roomId?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
     room?: boolean | RoomDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["media"]>
 
   export type MediaSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -5105,8 +5105,8 @@ export namespace Prisma {
     updatedAt?: boolean
     userId?: boolean
     roomId?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
     room?: boolean | RoomDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["media"]>
 
   export type MediaSelectScalar = {
@@ -5121,23 +5121,23 @@ export namespace Prisma {
 
   export type MediaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "url" | "type" | "createdAt" | "updatedAt" | "userId" | "roomId", ExtArgs["result"]["media"]>
   export type MediaInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
     room?: boolean | RoomDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }
   export type MediaIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
     room?: boolean | RoomDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }
   export type MediaIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
     room?: boolean | RoomDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }
 
   export type $MediaPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Media"
     objects: {
-      user: Prisma.$UserPayload<ExtArgs>
       room: Prisma.$RoomPayload<ExtArgs>
+      user: Prisma.$UserPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -5541,8 +5541,8 @@ export namespace Prisma {
    */
   export interface Prisma__MediaClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     room<T extends RoomDefaultArgs<ExtArgs> = {}>(args?: Subset<T, RoomDefaultArgs<ExtArgs>>): Prisma__RoomClient<$Result.GetResult<Prisma.$RoomPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7303,11 +7303,11 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"User"> | Date | string
     role?: EnumUserRoleNullableFilter<"User"> | $Enums.UserRole | null
     deletedAt?: DateTimeNullableFilter<"User"> | Date | string | null
-    rooms?: RoomListRelationFilter
-    createdRooms?: RoomListRelationFilter
-    messages?: MessageListRelationFilter
     aiQueries?: AIQueryListRelationFilter
     media?: MediaListRelationFilter
+    messages?: MessageListRelationFilter
+    createdRooms?: RoomListRelationFilter
+    rooms?: RoomListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -7321,11 +7321,11 @@ export namespace Prisma {
     updatedAt?: SortOrder
     role?: SortOrderInput | SortOrder
     deletedAt?: SortOrderInput | SortOrder
-    rooms?: RoomOrderByRelationAggregateInput
-    createdRooms?: RoomOrderByRelationAggregateInput
-    messages?: MessageOrderByRelationAggregateInput
     aiQueries?: AIQueryOrderByRelationAggregateInput
     media?: MediaOrderByRelationAggregateInput
+    messages?: MessageOrderByRelationAggregateInput
+    createdRooms?: RoomOrderByRelationAggregateInput
+    rooms?: RoomOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -7342,11 +7342,11 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"User"> | Date | string
     role?: EnumUserRoleNullableFilter<"User"> | $Enums.UserRole | null
     deletedAt?: DateTimeNullableFilter<"User"> | Date | string | null
-    rooms?: RoomListRelationFilter
-    createdRooms?: RoomListRelationFilter
-    messages?: MessageListRelationFilter
     aiQueries?: AIQueryListRelationFilter
     media?: MediaListRelationFilter
+    messages?: MessageListRelationFilter
+    createdRooms?: RoomListRelationFilter
+    rooms?: RoomListRelationFilter
   }, "id" | "username" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -7393,10 +7393,10 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Room"> | Date | string
     deletedAt?: DateTimeNullableFilter<"Room"> | Date | string | null
     creatorId?: StringFilter<"Room"> | string
+    media?: MediaListRelationFilter
+    messages?: MessageListRelationFilter
     creator?: XOR<UserScalarRelationFilter, UserWhereInput>
     users?: UserListRelationFilter
-    messages?: MessageListRelationFilter
-    media?: MediaListRelationFilter
   }
 
   export type RoomOrderByWithRelationInput = {
@@ -7408,10 +7408,10 @@ export namespace Prisma {
     updatedAt?: SortOrder
     deletedAt?: SortOrderInput | SortOrder
     creatorId?: SortOrder
+    media?: MediaOrderByRelationAggregateInput
+    messages?: MessageOrderByRelationAggregateInput
     creator?: UserOrderByWithRelationInput
     users?: UserOrderByRelationAggregateInput
-    messages?: MessageOrderByRelationAggregateInput
-    media?: MediaOrderByRelationAggregateInput
   }
 
   export type RoomWhereUniqueInput = Prisma.AtLeast<{
@@ -7426,10 +7426,10 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Room"> | Date | string
     deletedAt?: DateTimeNullableFilter<"Room"> | Date | string | null
     creatorId?: StringFilter<"Room"> | string
+    media?: MediaListRelationFilter
+    messages?: MessageListRelationFilter
     creator?: XOR<UserScalarRelationFilter, UserWhereInput>
     users?: UserListRelationFilter
-    messages?: MessageListRelationFilter
-    media?: MediaListRelationFilter
   }, "id" | "slug">
 
   export type RoomOrderByWithAggregationInput = {
@@ -7471,8 +7471,8 @@ export namespace Prisma {
     deletedAt?: DateTimeNullableFilter<"Message"> | Date | string | null
     userId?: StringFilter<"Message"> | string
     roomId?: StringFilter<"Message"> | string
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
     room?: XOR<RoomScalarRelationFilter, RoomWhereInput>
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
   export type MessageOrderByWithRelationInput = {
@@ -7483,8 +7483,8 @@ export namespace Prisma {
     deletedAt?: SortOrderInput | SortOrder
     userId?: SortOrder
     roomId?: SortOrder
-    user?: UserOrderByWithRelationInput
     room?: RoomOrderByWithRelationInput
+    user?: UserOrderByWithRelationInput
   }
 
   export type MessageWhereUniqueInput = Prisma.AtLeast<{
@@ -7498,8 +7498,8 @@ export namespace Prisma {
     deletedAt?: DateTimeNullableFilter<"Message"> | Date | string | null
     userId?: StringFilter<"Message"> | string
     roomId?: StringFilter<"Message"> | string
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
     room?: XOR<RoomScalarRelationFilter, RoomWhereInput>
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id">
 
   export type MessageOrderByWithAggregationInput = {
@@ -7539,8 +7539,8 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Media"> | Date | string
     userId?: StringFilter<"Media"> | string
     roomId?: StringFilter<"Media"> | string
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
     room?: XOR<RoomScalarRelationFilter, RoomWhereInput>
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
   export type MediaOrderByWithRelationInput = {
@@ -7551,8 +7551,8 @@ export namespace Prisma {
     updatedAt?: SortOrder
     userId?: SortOrder
     roomId?: SortOrder
-    user?: UserOrderByWithRelationInput
     room?: RoomOrderByWithRelationInput
+    user?: UserOrderByWithRelationInput
   }
 
   export type MediaWhereUniqueInput = Prisma.AtLeast<{
@@ -7566,8 +7566,8 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Media"> | Date | string
     userId?: StringFilter<"Media"> | string
     roomId?: StringFilter<"Media"> | string
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
     room?: XOR<RoomScalarRelationFilter, RoomWhereInput>
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id">
 
   export type MediaOrderByWithAggregationInput = {
@@ -7664,37 +7664,37 @@ export namespace Prisma {
   export type UserCreateInput = {
     id?: string
     username: string
-    firstName: string
-    lastName: string
+    firstName?: string
+    lastName?: string
     email: string
     password: string
     createdAt?: Date | string
     updatedAt?: Date | string
     role?: $Enums.UserRole | null
     deletedAt?: Date | string | null
-    rooms?: RoomCreateNestedManyWithoutUsersInput
-    createdRooms?: RoomCreateNestedManyWithoutCreatorInput
-    messages?: MessageCreateNestedManyWithoutUserInput
     aiQueries?: AIQueryCreateNestedManyWithoutUserInput
     media?: MediaCreateNestedManyWithoutUserInput
+    messages?: MessageCreateNestedManyWithoutUserInput
+    createdRooms?: RoomCreateNestedManyWithoutCreatorInput
+    rooms?: RoomCreateNestedManyWithoutUsersInput
   }
 
   export type UserUncheckedCreateInput = {
     id?: string
     username: string
-    firstName: string
-    lastName: string
+    firstName?: string
+    lastName?: string
     email: string
     password: string
     createdAt?: Date | string
     updatedAt?: Date | string
     role?: $Enums.UserRole | null
     deletedAt?: Date | string | null
-    rooms?: RoomUncheckedCreateNestedManyWithoutUsersInput
-    createdRooms?: RoomUncheckedCreateNestedManyWithoutCreatorInput
-    messages?: MessageUncheckedCreateNestedManyWithoutUserInput
     aiQueries?: AIQueryUncheckedCreateNestedManyWithoutUserInput
     media?: MediaUncheckedCreateNestedManyWithoutUserInput
+    messages?: MessageUncheckedCreateNestedManyWithoutUserInput
+    createdRooms?: RoomUncheckedCreateNestedManyWithoutCreatorInput
+    rooms?: RoomUncheckedCreateNestedManyWithoutUsersInput
   }
 
   export type UserUpdateInput = {
@@ -7708,11 +7708,11 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     role?: NullableEnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    rooms?: RoomUpdateManyWithoutUsersNestedInput
-    createdRooms?: RoomUpdateManyWithoutCreatorNestedInput
-    messages?: MessageUpdateManyWithoutUserNestedInput
     aiQueries?: AIQueryUpdateManyWithoutUserNestedInput
     media?: MediaUpdateManyWithoutUserNestedInput
+    messages?: MessageUpdateManyWithoutUserNestedInput
+    createdRooms?: RoomUpdateManyWithoutCreatorNestedInput
+    rooms?: RoomUpdateManyWithoutUsersNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -7726,18 +7726,18 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     role?: NullableEnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    rooms?: RoomUncheckedUpdateManyWithoutUsersNestedInput
-    createdRooms?: RoomUncheckedUpdateManyWithoutCreatorNestedInput
-    messages?: MessageUncheckedUpdateManyWithoutUserNestedInput
     aiQueries?: AIQueryUncheckedUpdateManyWithoutUserNestedInput
     media?: MediaUncheckedUpdateManyWithoutUserNestedInput
+    messages?: MessageUncheckedUpdateManyWithoutUserNestedInput
+    createdRooms?: RoomUncheckedUpdateManyWithoutCreatorNestedInput
+    rooms?: RoomUncheckedUpdateManyWithoutUsersNestedInput
   }
 
   export type UserCreateManyInput = {
     id?: string
     username: string
-    firstName: string
-    lastName: string
+    firstName?: string
+    lastName?: string
     email: string
     password: string
     createdAt?: Date | string
@@ -7780,10 +7780,10 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     deletedAt?: Date | string | null
+    media?: MediaCreateNestedManyWithoutRoomInput
+    messages?: MessageCreateNestedManyWithoutRoomInput
     creator: UserCreateNestedOneWithoutCreatedRoomsInput
     users?: UserCreateNestedManyWithoutRoomsInput
-    messages?: MessageCreateNestedManyWithoutRoomInput
-    media?: MediaCreateNestedManyWithoutRoomInput
   }
 
   export type RoomUncheckedCreateInput = {
@@ -7795,9 +7795,9 @@ export namespace Prisma {
     updatedAt?: Date | string
     deletedAt?: Date | string | null
     creatorId: string
-    users?: UserUncheckedCreateNestedManyWithoutRoomsInput
-    messages?: MessageUncheckedCreateNestedManyWithoutRoomInput
     media?: MediaUncheckedCreateNestedManyWithoutRoomInput
+    messages?: MessageUncheckedCreateNestedManyWithoutRoomInput
+    users?: UserUncheckedCreateNestedManyWithoutRoomsInput
   }
 
   export type RoomUpdateInput = {
@@ -7808,10 +7808,10 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    media?: MediaUpdateManyWithoutRoomNestedInput
+    messages?: MessageUpdateManyWithoutRoomNestedInput
     creator?: UserUpdateOneRequiredWithoutCreatedRoomsNestedInput
     users?: UserUpdateManyWithoutRoomsNestedInput
-    messages?: MessageUpdateManyWithoutRoomNestedInput
-    media?: MediaUpdateManyWithoutRoomNestedInput
   }
 
   export type RoomUncheckedUpdateInput = {
@@ -7823,9 +7823,9 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     creatorId?: StringFieldUpdateOperationsInput | string
-    users?: UserUncheckedUpdateManyWithoutRoomsNestedInput
-    messages?: MessageUncheckedUpdateManyWithoutRoomNestedInput
     media?: MediaUncheckedUpdateManyWithoutRoomNestedInput
+    messages?: MessageUncheckedUpdateManyWithoutRoomNestedInput
+    users?: UserUncheckedUpdateManyWithoutRoomsNestedInput
   }
 
   export type RoomCreateManyInput = {
@@ -7866,8 +7866,8 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     deletedAt?: Date | string | null
-    user: UserCreateNestedOneWithoutMessagesInput
     room: RoomCreateNestedOneWithoutMessagesInput
+    user: UserCreateNestedOneWithoutMessagesInput
   }
 
   export type MessageUncheckedCreateInput = {
@@ -7886,8 +7886,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    user?: UserUpdateOneRequiredWithoutMessagesNestedInput
     room?: RoomUpdateOneRequiredWithoutMessagesNestedInput
+    user?: UserUpdateOneRequiredWithoutMessagesNestedInput
   }
 
   export type MessageUncheckedUpdateInput = {
@@ -7934,8 +7934,8 @@ export namespace Prisma {
     type: $Enums.MediaType
     createdAt?: Date | string
     updatedAt?: Date | string
-    user: UserCreateNestedOneWithoutMediaInput
     room: RoomCreateNestedOneWithoutMediaInput
+    user: UserCreateNestedOneWithoutMediaInput
   }
 
   export type MediaUncheckedCreateInput = {
@@ -7954,8 +7954,8 @@ export namespace Prisma {
     type?: EnumMediaTypeFieldUpdateOperationsInput | $Enums.MediaType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutMediaNestedInput
     room?: RoomUpdateOneRequiredWithoutMediaNestedInput
+    user?: UserUpdateOneRequiredWithoutMediaNestedInput
   }
 
   export type MediaUncheckedUpdateInput = {
@@ -8109,18 +8109,6 @@ export namespace Prisma {
     not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
-  export type RoomListRelationFilter = {
-    every?: RoomWhereInput
-    some?: RoomWhereInput
-    none?: RoomWhereInput
-  }
-
-  export type MessageListRelationFilter = {
-    every?: MessageWhereInput
-    some?: MessageWhereInput
-    none?: MessageWhereInput
-  }
-
   export type AIQueryListRelationFilter = {
     every?: AIQueryWhereInput
     some?: AIQueryWhereInput
@@ -8133,17 +8121,21 @@ export namespace Prisma {
     none?: MediaWhereInput
   }
 
+  export type MessageListRelationFilter = {
+    every?: MessageWhereInput
+    some?: MessageWhereInput
+    none?: MessageWhereInput
+  }
+
+  export type RoomListRelationFilter = {
+    every?: RoomWhereInput
+    some?: RoomWhereInput
+    none?: RoomWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
-  }
-
-  export type RoomOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type MessageOrderByRelationAggregateInput = {
-    _count?: SortOrder
   }
 
   export type AIQueryOrderByRelationAggregateInput = {
@@ -8151,6 +8143,14 @@ export namespace Prisma {
   }
 
   export type MediaOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type MessageOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type RoomOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -8489,26 +8489,6 @@ export namespace Prisma {
     _max?: NestedJsonNullableFilter<$PrismaModel>
   }
 
-  export type RoomCreateNestedManyWithoutUsersInput = {
-    create?: XOR<RoomCreateWithoutUsersInput, RoomUncheckedCreateWithoutUsersInput> | RoomCreateWithoutUsersInput[] | RoomUncheckedCreateWithoutUsersInput[]
-    connectOrCreate?: RoomCreateOrConnectWithoutUsersInput | RoomCreateOrConnectWithoutUsersInput[]
-    connect?: RoomWhereUniqueInput | RoomWhereUniqueInput[]
-  }
-
-  export type RoomCreateNestedManyWithoutCreatorInput = {
-    create?: XOR<RoomCreateWithoutCreatorInput, RoomUncheckedCreateWithoutCreatorInput> | RoomCreateWithoutCreatorInput[] | RoomUncheckedCreateWithoutCreatorInput[]
-    connectOrCreate?: RoomCreateOrConnectWithoutCreatorInput | RoomCreateOrConnectWithoutCreatorInput[]
-    createMany?: RoomCreateManyCreatorInputEnvelope
-    connect?: RoomWhereUniqueInput | RoomWhereUniqueInput[]
-  }
-
-  export type MessageCreateNestedManyWithoutUserInput = {
-    create?: XOR<MessageCreateWithoutUserInput, MessageUncheckedCreateWithoutUserInput> | MessageCreateWithoutUserInput[] | MessageUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: MessageCreateOrConnectWithoutUserInput | MessageCreateOrConnectWithoutUserInput[]
-    createMany?: MessageCreateManyUserInputEnvelope
-    connect?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
-  }
-
   export type AIQueryCreateNestedManyWithoutUserInput = {
     create?: XOR<AIQueryCreateWithoutUserInput, AIQueryUncheckedCreateWithoutUserInput> | AIQueryCreateWithoutUserInput[] | AIQueryUncheckedCreateWithoutUserInput[]
     connectOrCreate?: AIQueryCreateOrConnectWithoutUserInput | AIQueryCreateOrConnectWithoutUserInput[]
@@ -8523,24 +8503,24 @@ export namespace Prisma {
     connect?: MediaWhereUniqueInput | MediaWhereUniqueInput[]
   }
 
-  export type RoomUncheckedCreateNestedManyWithoutUsersInput = {
-    create?: XOR<RoomCreateWithoutUsersInput, RoomUncheckedCreateWithoutUsersInput> | RoomCreateWithoutUsersInput[] | RoomUncheckedCreateWithoutUsersInput[]
-    connectOrCreate?: RoomCreateOrConnectWithoutUsersInput | RoomCreateOrConnectWithoutUsersInput[]
-    connect?: RoomWhereUniqueInput | RoomWhereUniqueInput[]
+  export type MessageCreateNestedManyWithoutUserInput = {
+    create?: XOR<MessageCreateWithoutUserInput, MessageUncheckedCreateWithoutUserInput> | MessageCreateWithoutUserInput[] | MessageUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: MessageCreateOrConnectWithoutUserInput | MessageCreateOrConnectWithoutUserInput[]
+    createMany?: MessageCreateManyUserInputEnvelope
+    connect?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
   }
 
-  export type RoomUncheckedCreateNestedManyWithoutCreatorInput = {
+  export type RoomCreateNestedManyWithoutCreatorInput = {
     create?: XOR<RoomCreateWithoutCreatorInput, RoomUncheckedCreateWithoutCreatorInput> | RoomCreateWithoutCreatorInput[] | RoomUncheckedCreateWithoutCreatorInput[]
     connectOrCreate?: RoomCreateOrConnectWithoutCreatorInput | RoomCreateOrConnectWithoutCreatorInput[]
     createMany?: RoomCreateManyCreatorInputEnvelope
     connect?: RoomWhereUniqueInput | RoomWhereUniqueInput[]
   }
 
-  export type MessageUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<MessageCreateWithoutUserInput, MessageUncheckedCreateWithoutUserInput> | MessageCreateWithoutUserInput[] | MessageUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: MessageCreateOrConnectWithoutUserInput | MessageCreateOrConnectWithoutUserInput[]
-    createMany?: MessageCreateManyUserInputEnvelope
-    connect?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
+  export type RoomCreateNestedManyWithoutUsersInput = {
+    create?: XOR<RoomCreateWithoutUsersInput, RoomUncheckedCreateWithoutUsersInput> | RoomCreateWithoutUsersInput[] | RoomUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: RoomCreateOrConnectWithoutUsersInput | RoomCreateOrConnectWithoutUsersInput[]
+    connect?: RoomWhereUniqueInput | RoomWhereUniqueInput[]
   }
 
   export type AIQueryUncheckedCreateNestedManyWithoutUserInput = {
@@ -8557,6 +8537,26 @@ export namespace Prisma {
     connect?: MediaWhereUniqueInput | MediaWhereUniqueInput[]
   }
 
+  export type MessageUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<MessageCreateWithoutUserInput, MessageUncheckedCreateWithoutUserInput> | MessageCreateWithoutUserInput[] | MessageUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: MessageCreateOrConnectWithoutUserInput | MessageCreateOrConnectWithoutUserInput[]
+    createMany?: MessageCreateManyUserInputEnvelope
+    connect?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
+  }
+
+  export type RoomUncheckedCreateNestedManyWithoutCreatorInput = {
+    create?: XOR<RoomCreateWithoutCreatorInput, RoomUncheckedCreateWithoutCreatorInput> | RoomCreateWithoutCreatorInput[] | RoomUncheckedCreateWithoutCreatorInput[]
+    connectOrCreate?: RoomCreateOrConnectWithoutCreatorInput | RoomCreateOrConnectWithoutCreatorInput[]
+    createMany?: RoomCreateManyCreatorInputEnvelope
+    connect?: RoomWhereUniqueInput | RoomWhereUniqueInput[]
+  }
+
+  export type RoomUncheckedCreateNestedManyWithoutUsersInput = {
+    create?: XOR<RoomCreateWithoutUsersInput, RoomUncheckedCreateWithoutUsersInput> | RoomCreateWithoutUsersInput[] | RoomUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: RoomCreateOrConnectWithoutUsersInput | RoomCreateOrConnectWithoutUsersInput[]
+    connect?: RoomWhereUniqueInput | RoomWhereUniqueInput[]
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -8571,47 +8571,6 @@ export namespace Prisma {
 
   export type NullableDateTimeFieldUpdateOperationsInput = {
     set?: Date | string | null
-  }
-
-  export type RoomUpdateManyWithoutUsersNestedInput = {
-    create?: XOR<RoomCreateWithoutUsersInput, RoomUncheckedCreateWithoutUsersInput> | RoomCreateWithoutUsersInput[] | RoomUncheckedCreateWithoutUsersInput[]
-    connectOrCreate?: RoomCreateOrConnectWithoutUsersInput | RoomCreateOrConnectWithoutUsersInput[]
-    upsert?: RoomUpsertWithWhereUniqueWithoutUsersInput | RoomUpsertWithWhereUniqueWithoutUsersInput[]
-    set?: RoomWhereUniqueInput | RoomWhereUniqueInput[]
-    disconnect?: RoomWhereUniqueInput | RoomWhereUniqueInput[]
-    delete?: RoomWhereUniqueInput | RoomWhereUniqueInput[]
-    connect?: RoomWhereUniqueInput | RoomWhereUniqueInput[]
-    update?: RoomUpdateWithWhereUniqueWithoutUsersInput | RoomUpdateWithWhereUniqueWithoutUsersInput[]
-    updateMany?: RoomUpdateManyWithWhereWithoutUsersInput | RoomUpdateManyWithWhereWithoutUsersInput[]
-    deleteMany?: RoomScalarWhereInput | RoomScalarWhereInput[]
-  }
-
-  export type RoomUpdateManyWithoutCreatorNestedInput = {
-    create?: XOR<RoomCreateWithoutCreatorInput, RoomUncheckedCreateWithoutCreatorInput> | RoomCreateWithoutCreatorInput[] | RoomUncheckedCreateWithoutCreatorInput[]
-    connectOrCreate?: RoomCreateOrConnectWithoutCreatorInput | RoomCreateOrConnectWithoutCreatorInput[]
-    upsert?: RoomUpsertWithWhereUniqueWithoutCreatorInput | RoomUpsertWithWhereUniqueWithoutCreatorInput[]
-    createMany?: RoomCreateManyCreatorInputEnvelope
-    set?: RoomWhereUniqueInput | RoomWhereUniqueInput[]
-    disconnect?: RoomWhereUniqueInput | RoomWhereUniqueInput[]
-    delete?: RoomWhereUniqueInput | RoomWhereUniqueInput[]
-    connect?: RoomWhereUniqueInput | RoomWhereUniqueInput[]
-    update?: RoomUpdateWithWhereUniqueWithoutCreatorInput | RoomUpdateWithWhereUniqueWithoutCreatorInput[]
-    updateMany?: RoomUpdateManyWithWhereWithoutCreatorInput | RoomUpdateManyWithWhereWithoutCreatorInput[]
-    deleteMany?: RoomScalarWhereInput | RoomScalarWhereInput[]
-  }
-
-  export type MessageUpdateManyWithoutUserNestedInput = {
-    create?: XOR<MessageCreateWithoutUserInput, MessageUncheckedCreateWithoutUserInput> | MessageCreateWithoutUserInput[] | MessageUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: MessageCreateOrConnectWithoutUserInput | MessageCreateOrConnectWithoutUserInput[]
-    upsert?: MessageUpsertWithWhereUniqueWithoutUserInput | MessageUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: MessageCreateManyUserInputEnvelope
-    set?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
-    disconnect?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
-    delete?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
-    connect?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
-    update?: MessageUpdateWithWhereUniqueWithoutUserInput | MessageUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: MessageUpdateManyWithWhereWithoutUserInput | MessageUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: MessageScalarWhereInput | MessageScalarWhereInput[]
   }
 
   export type AIQueryUpdateManyWithoutUserNestedInput = {
@@ -8642,20 +8601,21 @@ export namespace Prisma {
     deleteMany?: MediaScalarWhereInput | MediaScalarWhereInput[]
   }
 
-  export type RoomUncheckedUpdateManyWithoutUsersNestedInput = {
-    create?: XOR<RoomCreateWithoutUsersInput, RoomUncheckedCreateWithoutUsersInput> | RoomCreateWithoutUsersInput[] | RoomUncheckedCreateWithoutUsersInput[]
-    connectOrCreate?: RoomCreateOrConnectWithoutUsersInput | RoomCreateOrConnectWithoutUsersInput[]
-    upsert?: RoomUpsertWithWhereUniqueWithoutUsersInput | RoomUpsertWithWhereUniqueWithoutUsersInput[]
-    set?: RoomWhereUniqueInput | RoomWhereUniqueInput[]
-    disconnect?: RoomWhereUniqueInput | RoomWhereUniqueInput[]
-    delete?: RoomWhereUniqueInput | RoomWhereUniqueInput[]
-    connect?: RoomWhereUniqueInput | RoomWhereUniqueInput[]
-    update?: RoomUpdateWithWhereUniqueWithoutUsersInput | RoomUpdateWithWhereUniqueWithoutUsersInput[]
-    updateMany?: RoomUpdateManyWithWhereWithoutUsersInput | RoomUpdateManyWithWhereWithoutUsersInput[]
-    deleteMany?: RoomScalarWhereInput | RoomScalarWhereInput[]
+  export type MessageUpdateManyWithoutUserNestedInput = {
+    create?: XOR<MessageCreateWithoutUserInput, MessageUncheckedCreateWithoutUserInput> | MessageCreateWithoutUserInput[] | MessageUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: MessageCreateOrConnectWithoutUserInput | MessageCreateOrConnectWithoutUserInput[]
+    upsert?: MessageUpsertWithWhereUniqueWithoutUserInput | MessageUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: MessageCreateManyUserInputEnvelope
+    set?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
+    disconnect?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
+    delete?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
+    connect?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
+    update?: MessageUpdateWithWhereUniqueWithoutUserInput | MessageUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: MessageUpdateManyWithWhereWithoutUserInput | MessageUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: MessageScalarWhereInput | MessageScalarWhereInput[]
   }
 
-  export type RoomUncheckedUpdateManyWithoutCreatorNestedInput = {
+  export type RoomUpdateManyWithoutCreatorNestedInput = {
     create?: XOR<RoomCreateWithoutCreatorInput, RoomUncheckedCreateWithoutCreatorInput> | RoomCreateWithoutCreatorInput[] | RoomUncheckedCreateWithoutCreatorInput[]
     connectOrCreate?: RoomCreateOrConnectWithoutCreatorInput | RoomCreateOrConnectWithoutCreatorInput[]
     upsert?: RoomUpsertWithWhereUniqueWithoutCreatorInput | RoomUpsertWithWhereUniqueWithoutCreatorInput[]
@@ -8669,18 +8629,17 @@ export namespace Prisma {
     deleteMany?: RoomScalarWhereInput | RoomScalarWhereInput[]
   }
 
-  export type MessageUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<MessageCreateWithoutUserInput, MessageUncheckedCreateWithoutUserInput> | MessageCreateWithoutUserInput[] | MessageUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: MessageCreateOrConnectWithoutUserInput | MessageCreateOrConnectWithoutUserInput[]
-    upsert?: MessageUpsertWithWhereUniqueWithoutUserInput | MessageUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: MessageCreateManyUserInputEnvelope
-    set?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
-    disconnect?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
-    delete?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
-    connect?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
-    update?: MessageUpdateWithWhereUniqueWithoutUserInput | MessageUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: MessageUpdateManyWithWhereWithoutUserInput | MessageUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: MessageScalarWhereInput | MessageScalarWhereInput[]
+  export type RoomUpdateManyWithoutUsersNestedInput = {
+    create?: XOR<RoomCreateWithoutUsersInput, RoomUncheckedCreateWithoutUsersInput> | RoomCreateWithoutUsersInput[] | RoomUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: RoomCreateOrConnectWithoutUsersInput | RoomCreateOrConnectWithoutUsersInput[]
+    upsert?: RoomUpsertWithWhereUniqueWithoutUsersInput | RoomUpsertWithWhereUniqueWithoutUsersInput[]
+    set?: RoomWhereUniqueInput | RoomWhereUniqueInput[]
+    disconnect?: RoomWhereUniqueInput | RoomWhereUniqueInput[]
+    delete?: RoomWhereUniqueInput | RoomWhereUniqueInput[]
+    connect?: RoomWhereUniqueInput | RoomWhereUniqueInput[]
+    update?: RoomUpdateWithWhereUniqueWithoutUsersInput | RoomUpdateWithWhereUniqueWithoutUsersInput[]
+    updateMany?: RoomUpdateManyWithWhereWithoutUsersInput | RoomUpdateManyWithWhereWithoutUsersInput[]
+    deleteMany?: RoomScalarWhereInput | RoomScalarWhereInput[]
   }
 
   export type AIQueryUncheckedUpdateManyWithoutUserNestedInput = {
@@ -8711,6 +8670,61 @@ export namespace Prisma {
     deleteMany?: MediaScalarWhereInput | MediaScalarWhereInput[]
   }
 
+  export type MessageUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<MessageCreateWithoutUserInput, MessageUncheckedCreateWithoutUserInput> | MessageCreateWithoutUserInput[] | MessageUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: MessageCreateOrConnectWithoutUserInput | MessageCreateOrConnectWithoutUserInput[]
+    upsert?: MessageUpsertWithWhereUniqueWithoutUserInput | MessageUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: MessageCreateManyUserInputEnvelope
+    set?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
+    disconnect?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
+    delete?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
+    connect?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
+    update?: MessageUpdateWithWhereUniqueWithoutUserInput | MessageUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: MessageUpdateManyWithWhereWithoutUserInput | MessageUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: MessageScalarWhereInput | MessageScalarWhereInput[]
+  }
+
+  export type RoomUncheckedUpdateManyWithoutCreatorNestedInput = {
+    create?: XOR<RoomCreateWithoutCreatorInput, RoomUncheckedCreateWithoutCreatorInput> | RoomCreateWithoutCreatorInput[] | RoomUncheckedCreateWithoutCreatorInput[]
+    connectOrCreate?: RoomCreateOrConnectWithoutCreatorInput | RoomCreateOrConnectWithoutCreatorInput[]
+    upsert?: RoomUpsertWithWhereUniqueWithoutCreatorInput | RoomUpsertWithWhereUniqueWithoutCreatorInput[]
+    createMany?: RoomCreateManyCreatorInputEnvelope
+    set?: RoomWhereUniqueInput | RoomWhereUniqueInput[]
+    disconnect?: RoomWhereUniqueInput | RoomWhereUniqueInput[]
+    delete?: RoomWhereUniqueInput | RoomWhereUniqueInput[]
+    connect?: RoomWhereUniqueInput | RoomWhereUniqueInput[]
+    update?: RoomUpdateWithWhereUniqueWithoutCreatorInput | RoomUpdateWithWhereUniqueWithoutCreatorInput[]
+    updateMany?: RoomUpdateManyWithWhereWithoutCreatorInput | RoomUpdateManyWithWhereWithoutCreatorInput[]
+    deleteMany?: RoomScalarWhereInput | RoomScalarWhereInput[]
+  }
+
+  export type RoomUncheckedUpdateManyWithoutUsersNestedInput = {
+    create?: XOR<RoomCreateWithoutUsersInput, RoomUncheckedCreateWithoutUsersInput> | RoomCreateWithoutUsersInput[] | RoomUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: RoomCreateOrConnectWithoutUsersInput | RoomCreateOrConnectWithoutUsersInput[]
+    upsert?: RoomUpsertWithWhereUniqueWithoutUsersInput | RoomUpsertWithWhereUniqueWithoutUsersInput[]
+    set?: RoomWhereUniqueInput | RoomWhereUniqueInput[]
+    disconnect?: RoomWhereUniqueInput | RoomWhereUniqueInput[]
+    delete?: RoomWhereUniqueInput | RoomWhereUniqueInput[]
+    connect?: RoomWhereUniqueInput | RoomWhereUniqueInput[]
+    update?: RoomUpdateWithWhereUniqueWithoutUsersInput | RoomUpdateWithWhereUniqueWithoutUsersInput[]
+    updateMany?: RoomUpdateManyWithWhereWithoutUsersInput | RoomUpdateManyWithWhereWithoutUsersInput[]
+    deleteMany?: RoomScalarWhereInput | RoomScalarWhereInput[]
+  }
+
+  export type MediaCreateNestedManyWithoutRoomInput = {
+    create?: XOR<MediaCreateWithoutRoomInput, MediaUncheckedCreateWithoutRoomInput> | MediaCreateWithoutRoomInput[] | MediaUncheckedCreateWithoutRoomInput[]
+    connectOrCreate?: MediaCreateOrConnectWithoutRoomInput | MediaCreateOrConnectWithoutRoomInput[]
+    createMany?: MediaCreateManyRoomInputEnvelope
+    connect?: MediaWhereUniqueInput | MediaWhereUniqueInput[]
+  }
+
+  export type MessageCreateNestedManyWithoutRoomInput = {
+    create?: XOR<MessageCreateWithoutRoomInput, MessageUncheckedCreateWithoutRoomInput> | MessageCreateWithoutRoomInput[] | MessageUncheckedCreateWithoutRoomInput[]
+    connectOrCreate?: MessageCreateOrConnectWithoutRoomInput | MessageCreateOrConnectWithoutRoomInput[]
+    createMany?: MessageCreateManyRoomInputEnvelope
+    connect?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
+  }
+
   export type UserCreateNestedOneWithoutCreatedRoomsInput = {
     create?: XOR<UserCreateWithoutCreatedRoomsInput, UserUncheckedCreateWithoutCreatedRoomsInput>
     connectOrCreate?: UserCreateOrConnectWithoutCreatedRoomsInput
@@ -8723,24 +8737,11 @@ export namespace Prisma {
     connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
   }
 
-  export type MessageCreateNestedManyWithoutRoomInput = {
-    create?: XOR<MessageCreateWithoutRoomInput, MessageUncheckedCreateWithoutRoomInput> | MessageCreateWithoutRoomInput[] | MessageUncheckedCreateWithoutRoomInput[]
-    connectOrCreate?: MessageCreateOrConnectWithoutRoomInput | MessageCreateOrConnectWithoutRoomInput[]
-    createMany?: MessageCreateManyRoomInputEnvelope
-    connect?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
-  }
-
-  export type MediaCreateNestedManyWithoutRoomInput = {
+  export type MediaUncheckedCreateNestedManyWithoutRoomInput = {
     create?: XOR<MediaCreateWithoutRoomInput, MediaUncheckedCreateWithoutRoomInput> | MediaCreateWithoutRoomInput[] | MediaUncheckedCreateWithoutRoomInput[]
     connectOrCreate?: MediaCreateOrConnectWithoutRoomInput | MediaCreateOrConnectWithoutRoomInput[]
     createMany?: MediaCreateManyRoomInputEnvelope
     connect?: MediaWhereUniqueInput | MediaWhereUniqueInput[]
-  }
-
-  export type UserUncheckedCreateNestedManyWithoutRoomsInput = {
-    create?: XOR<UserCreateWithoutRoomsInput, UserUncheckedCreateWithoutRoomsInput> | UserCreateWithoutRoomsInput[] | UserUncheckedCreateWithoutRoomsInput[]
-    connectOrCreate?: UserCreateOrConnectWithoutRoomsInput | UserCreateOrConnectWithoutRoomsInput[]
-    connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
   }
 
   export type MessageUncheckedCreateNestedManyWithoutRoomInput = {
@@ -8750,15 +8751,42 @@ export namespace Prisma {
     connect?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
   }
 
-  export type MediaUncheckedCreateNestedManyWithoutRoomInput = {
-    create?: XOR<MediaCreateWithoutRoomInput, MediaUncheckedCreateWithoutRoomInput> | MediaCreateWithoutRoomInput[] | MediaUncheckedCreateWithoutRoomInput[]
-    connectOrCreate?: MediaCreateOrConnectWithoutRoomInput | MediaCreateOrConnectWithoutRoomInput[]
-    createMany?: MediaCreateManyRoomInputEnvelope
-    connect?: MediaWhereUniqueInput | MediaWhereUniqueInput[]
+  export type UserUncheckedCreateNestedManyWithoutRoomsInput = {
+    create?: XOR<UserCreateWithoutRoomsInput, UserUncheckedCreateWithoutRoomsInput> | UserCreateWithoutRoomsInput[] | UserUncheckedCreateWithoutRoomsInput[]
+    connectOrCreate?: UserCreateOrConnectWithoutRoomsInput | UserCreateOrConnectWithoutRoomsInput[]
+    connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
   }
 
   export type NullableStringFieldUpdateOperationsInput = {
     set?: string | null
+  }
+
+  export type MediaUpdateManyWithoutRoomNestedInput = {
+    create?: XOR<MediaCreateWithoutRoomInput, MediaUncheckedCreateWithoutRoomInput> | MediaCreateWithoutRoomInput[] | MediaUncheckedCreateWithoutRoomInput[]
+    connectOrCreate?: MediaCreateOrConnectWithoutRoomInput | MediaCreateOrConnectWithoutRoomInput[]
+    upsert?: MediaUpsertWithWhereUniqueWithoutRoomInput | MediaUpsertWithWhereUniqueWithoutRoomInput[]
+    createMany?: MediaCreateManyRoomInputEnvelope
+    set?: MediaWhereUniqueInput | MediaWhereUniqueInput[]
+    disconnect?: MediaWhereUniqueInput | MediaWhereUniqueInput[]
+    delete?: MediaWhereUniqueInput | MediaWhereUniqueInput[]
+    connect?: MediaWhereUniqueInput | MediaWhereUniqueInput[]
+    update?: MediaUpdateWithWhereUniqueWithoutRoomInput | MediaUpdateWithWhereUniqueWithoutRoomInput[]
+    updateMany?: MediaUpdateManyWithWhereWithoutRoomInput | MediaUpdateManyWithWhereWithoutRoomInput[]
+    deleteMany?: MediaScalarWhereInput | MediaScalarWhereInput[]
+  }
+
+  export type MessageUpdateManyWithoutRoomNestedInput = {
+    create?: XOR<MessageCreateWithoutRoomInput, MessageUncheckedCreateWithoutRoomInput> | MessageCreateWithoutRoomInput[] | MessageUncheckedCreateWithoutRoomInput[]
+    connectOrCreate?: MessageCreateOrConnectWithoutRoomInput | MessageCreateOrConnectWithoutRoomInput[]
+    upsert?: MessageUpsertWithWhereUniqueWithoutRoomInput | MessageUpsertWithWhereUniqueWithoutRoomInput[]
+    createMany?: MessageCreateManyRoomInputEnvelope
+    set?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
+    disconnect?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
+    delete?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
+    connect?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
+    update?: MessageUpdateWithWhereUniqueWithoutRoomInput | MessageUpdateWithWhereUniqueWithoutRoomInput[]
+    updateMany?: MessageUpdateManyWithWhereWithoutRoomInput | MessageUpdateManyWithWhereWithoutRoomInput[]
+    deleteMany?: MessageScalarWhereInput | MessageScalarWhereInput[]
   }
 
   export type UserUpdateOneRequiredWithoutCreatedRoomsNestedInput = {
@@ -8782,21 +8810,7 @@ export namespace Prisma {
     deleteMany?: UserScalarWhereInput | UserScalarWhereInput[]
   }
 
-  export type MessageUpdateManyWithoutRoomNestedInput = {
-    create?: XOR<MessageCreateWithoutRoomInput, MessageUncheckedCreateWithoutRoomInput> | MessageCreateWithoutRoomInput[] | MessageUncheckedCreateWithoutRoomInput[]
-    connectOrCreate?: MessageCreateOrConnectWithoutRoomInput | MessageCreateOrConnectWithoutRoomInput[]
-    upsert?: MessageUpsertWithWhereUniqueWithoutRoomInput | MessageUpsertWithWhereUniqueWithoutRoomInput[]
-    createMany?: MessageCreateManyRoomInputEnvelope
-    set?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
-    disconnect?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
-    delete?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
-    connect?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
-    update?: MessageUpdateWithWhereUniqueWithoutRoomInput | MessageUpdateWithWhereUniqueWithoutRoomInput[]
-    updateMany?: MessageUpdateManyWithWhereWithoutRoomInput | MessageUpdateManyWithWhereWithoutRoomInput[]
-    deleteMany?: MessageScalarWhereInput | MessageScalarWhereInput[]
-  }
-
-  export type MediaUpdateManyWithoutRoomNestedInput = {
+  export type MediaUncheckedUpdateManyWithoutRoomNestedInput = {
     create?: XOR<MediaCreateWithoutRoomInput, MediaUncheckedCreateWithoutRoomInput> | MediaCreateWithoutRoomInput[] | MediaUncheckedCreateWithoutRoomInput[]
     connectOrCreate?: MediaCreateOrConnectWithoutRoomInput | MediaCreateOrConnectWithoutRoomInput[]
     upsert?: MediaUpsertWithWhereUniqueWithoutRoomInput | MediaUpsertWithWhereUniqueWithoutRoomInput[]
@@ -8808,19 +8822,6 @@ export namespace Prisma {
     update?: MediaUpdateWithWhereUniqueWithoutRoomInput | MediaUpdateWithWhereUniqueWithoutRoomInput[]
     updateMany?: MediaUpdateManyWithWhereWithoutRoomInput | MediaUpdateManyWithWhereWithoutRoomInput[]
     deleteMany?: MediaScalarWhereInput | MediaScalarWhereInput[]
-  }
-
-  export type UserUncheckedUpdateManyWithoutRoomsNestedInput = {
-    create?: XOR<UserCreateWithoutRoomsInput, UserUncheckedCreateWithoutRoomsInput> | UserCreateWithoutRoomsInput[] | UserUncheckedCreateWithoutRoomsInput[]
-    connectOrCreate?: UserCreateOrConnectWithoutRoomsInput | UserCreateOrConnectWithoutRoomsInput[]
-    upsert?: UserUpsertWithWhereUniqueWithoutRoomsInput | UserUpsertWithWhereUniqueWithoutRoomsInput[]
-    set?: UserWhereUniqueInput | UserWhereUniqueInput[]
-    disconnect?: UserWhereUniqueInput | UserWhereUniqueInput[]
-    delete?: UserWhereUniqueInput | UserWhereUniqueInput[]
-    connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
-    update?: UserUpdateWithWhereUniqueWithoutRoomsInput | UserUpdateWithWhereUniqueWithoutRoomsInput[]
-    updateMany?: UserUpdateManyWithWhereWithoutRoomsInput | UserUpdateManyWithWhereWithoutRoomsInput[]
-    deleteMany?: UserScalarWhereInput | UserScalarWhereInput[]
   }
 
   export type MessageUncheckedUpdateManyWithoutRoomNestedInput = {
@@ -8837,24 +8838,17 @@ export namespace Prisma {
     deleteMany?: MessageScalarWhereInput | MessageScalarWhereInput[]
   }
 
-  export type MediaUncheckedUpdateManyWithoutRoomNestedInput = {
-    create?: XOR<MediaCreateWithoutRoomInput, MediaUncheckedCreateWithoutRoomInput> | MediaCreateWithoutRoomInput[] | MediaUncheckedCreateWithoutRoomInput[]
-    connectOrCreate?: MediaCreateOrConnectWithoutRoomInput | MediaCreateOrConnectWithoutRoomInput[]
-    upsert?: MediaUpsertWithWhereUniqueWithoutRoomInput | MediaUpsertWithWhereUniqueWithoutRoomInput[]
-    createMany?: MediaCreateManyRoomInputEnvelope
-    set?: MediaWhereUniqueInput | MediaWhereUniqueInput[]
-    disconnect?: MediaWhereUniqueInput | MediaWhereUniqueInput[]
-    delete?: MediaWhereUniqueInput | MediaWhereUniqueInput[]
-    connect?: MediaWhereUniqueInput | MediaWhereUniqueInput[]
-    update?: MediaUpdateWithWhereUniqueWithoutRoomInput | MediaUpdateWithWhereUniqueWithoutRoomInput[]
-    updateMany?: MediaUpdateManyWithWhereWithoutRoomInput | MediaUpdateManyWithWhereWithoutRoomInput[]
-    deleteMany?: MediaScalarWhereInput | MediaScalarWhereInput[]
-  }
-
-  export type UserCreateNestedOneWithoutMessagesInput = {
-    create?: XOR<UserCreateWithoutMessagesInput, UserUncheckedCreateWithoutMessagesInput>
-    connectOrCreate?: UserCreateOrConnectWithoutMessagesInput
-    connect?: UserWhereUniqueInput
+  export type UserUncheckedUpdateManyWithoutRoomsNestedInput = {
+    create?: XOR<UserCreateWithoutRoomsInput, UserUncheckedCreateWithoutRoomsInput> | UserCreateWithoutRoomsInput[] | UserUncheckedCreateWithoutRoomsInput[]
+    connectOrCreate?: UserCreateOrConnectWithoutRoomsInput | UserCreateOrConnectWithoutRoomsInput[]
+    upsert?: UserUpsertWithWhereUniqueWithoutRoomsInput | UserUpsertWithWhereUniqueWithoutRoomsInput[]
+    set?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    disconnect?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    delete?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    update?: UserUpdateWithWhereUniqueWithoutRoomsInput | UserUpdateWithWhereUniqueWithoutRoomsInput[]
+    updateMany?: UserUpdateManyWithWhereWithoutRoomsInput | UserUpdateManyWithWhereWithoutRoomsInput[]
+    deleteMany?: UserScalarWhereInput | UserScalarWhereInput[]
   }
 
   export type RoomCreateNestedOneWithoutMessagesInput = {
@@ -8863,12 +8857,10 @@ export namespace Prisma {
     connect?: RoomWhereUniqueInput
   }
 
-  export type UserUpdateOneRequiredWithoutMessagesNestedInput = {
+  export type UserCreateNestedOneWithoutMessagesInput = {
     create?: XOR<UserCreateWithoutMessagesInput, UserUncheckedCreateWithoutMessagesInput>
     connectOrCreate?: UserCreateOrConnectWithoutMessagesInput
-    upsert?: UserUpsertWithoutMessagesInput
     connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutMessagesInput, UserUpdateWithoutMessagesInput>, UserUncheckedUpdateWithoutMessagesInput>
   }
 
   export type RoomUpdateOneRequiredWithoutMessagesNestedInput = {
@@ -8879,10 +8871,12 @@ export namespace Prisma {
     update?: XOR<XOR<RoomUpdateToOneWithWhereWithoutMessagesInput, RoomUpdateWithoutMessagesInput>, RoomUncheckedUpdateWithoutMessagesInput>
   }
 
-  export type UserCreateNestedOneWithoutMediaInput = {
-    create?: XOR<UserCreateWithoutMediaInput, UserUncheckedCreateWithoutMediaInput>
-    connectOrCreate?: UserCreateOrConnectWithoutMediaInput
+  export type UserUpdateOneRequiredWithoutMessagesNestedInput = {
+    create?: XOR<UserCreateWithoutMessagesInput, UserUncheckedCreateWithoutMessagesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutMessagesInput
+    upsert?: UserUpsertWithoutMessagesInput
     connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutMessagesInput, UserUpdateWithoutMessagesInput>, UserUncheckedUpdateWithoutMessagesInput>
   }
 
   export type RoomCreateNestedOneWithoutMediaInput = {
@@ -8891,16 +8885,14 @@ export namespace Prisma {
     connect?: RoomWhereUniqueInput
   }
 
-  export type EnumMediaTypeFieldUpdateOperationsInput = {
-    set?: $Enums.MediaType
-  }
-
-  export type UserUpdateOneRequiredWithoutMediaNestedInput = {
+  export type UserCreateNestedOneWithoutMediaInput = {
     create?: XOR<UserCreateWithoutMediaInput, UserUncheckedCreateWithoutMediaInput>
     connectOrCreate?: UserCreateOrConnectWithoutMediaInput
-    upsert?: UserUpsertWithoutMediaInput
     connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutMediaInput, UserUpdateWithoutMediaInput>, UserUncheckedUpdateWithoutMediaInput>
+  }
+
+  export type EnumMediaTypeFieldUpdateOperationsInput = {
+    set?: $Enums.MediaType
   }
 
   export type RoomUpdateOneRequiredWithoutMediaNestedInput = {
@@ -8909,6 +8901,14 @@ export namespace Prisma {
     upsert?: RoomUpsertWithoutMediaInput
     connect?: RoomWhereUniqueInput
     update?: XOR<XOR<RoomUpdateToOneWithWhereWithoutMediaInput, RoomUpdateWithoutMediaInput>, RoomUncheckedUpdateWithoutMediaInput>
+  }
+
+  export type UserUpdateOneRequiredWithoutMediaNestedInput = {
+    create?: XOR<UserCreateWithoutMediaInput, UserUncheckedCreateWithoutMediaInput>
+    connectOrCreate?: UserCreateOrConnectWithoutMediaInput
+    upsert?: UserUpsertWithoutMediaInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutMediaInput, UserUpdateWithoutMediaInput>, UserUncheckedUpdateWithoutMediaInput>
   }
 
   export type UserCreateNestedOneWithoutAiQueriesInput = {
@@ -9116,101 +9116,6 @@ export namespace Prisma {
     not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
   }
 
-  export type RoomCreateWithoutUsersInput = {
-    id?: string
-    name: string
-    description?: string | null
-    slug: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    deletedAt?: Date | string | null
-    creator: UserCreateNestedOneWithoutCreatedRoomsInput
-    messages?: MessageCreateNestedManyWithoutRoomInput
-    media?: MediaCreateNestedManyWithoutRoomInput
-  }
-
-  export type RoomUncheckedCreateWithoutUsersInput = {
-    id?: string
-    name: string
-    description?: string | null
-    slug: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    deletedAt?: Date | string | null
-    creatorId: string
-    messages?: MessageUncheckedCreateNestedManyWithoutRoomInput
-    media?: MediaUncheckedCreateNestedManyWithoutRoomInput
-  }
-
-  export type RoomCreateOrConnectWithoutUsersInput = {
-    where: RoomWhereUniqueInput
-    create: XOR<RoomCreateWithoutUsersInput, RoomUncheckedCreateWithoutUsersInput>
-  }
-
-  export type RoomCreateWithoutCreatorInput = {
-    id?: string
-    name: string
-    description?: string | null
-    slug: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    deletedAt?: Date | string | null
-    users?: UserCreateNestedManyWithoutRoomsInput
-    messages?: MessageCreateNestedManyWithoutRoomInput
-    media?: MediaCreateNestedManyWithoutRoomInput
-  }
-
-  export type RoomUncheckedCreateWithoutCreatorInput = {
-    id?: string
-    name: string
-    description?: string | null
-    slug: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    deletedAt?: Date | string | null
-    users?: UserUncheckedCreateNestedManyWithoutRoomsInput
-    messages?: MessageUncheckedCreateNestedManyWithoutRoomInput
-    media?: MediaUncheckedCreateNestedManyWithoutRoomInput
-  }
-
-  export type RoomCreateOrConnectWithoutCreatorInput = {
-    where: RoomWhereUniqueInput
-    create: XOR<RoomCreateWithoutCreatorInput, RoomUncheckedCreateWithoutCreatorInput>
-  }
-
-  export type RoomCreateManyCreatorInputEnvelope = {
-    data: RoomCreateManyCreatorInput | RoomCreateManyCreatorInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type MessageCreateWithoutUserInput = {
-    id?: string
-    content: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    deletedAt?: Date | string | null
-    room: RoomCreateNestedOneWithoutMessagesInput
-  }
-
-  export type MessageUncheckedCreateWithoutUserInput = {
-    id?: string
-    content: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    deletedAt?: Date | string | null
-    roomId: string
-  }
-
-  export type MessageCreateOrConnectWithoutUserInput = {
-    where: MessageWhereUniqueInput
-    create: XOR<MessageCreateWithoutUserInput, MessageUncheckedCreateWithoutUserInput>
-  }
-
-  export type MessageCreateManyUserInputEnvelope = {
-    data: MessageCreateManyUserInput | MessageCreateManyUserInput[]
-    skipDuplicates?: boolean
-  }
-
   export type AIQueryCreateWithoutUserInput = {
     id?: string
     query: string
@@ -9267,79 +9172,99 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type RoomUpsertWithWhereUniqueWithoutUsersInput = {
-    where: RoomWhereUniqueInput
-    update: XOR<RoomUpdateWithoutUsersInput, RoomUncheckedUpdateWithoutUsersInput>
-    create: XOR<RoomCreateWithoutUsersInput, RoomUncheckedCreateWithoutUsersInput>
+  export type MessageCreateWithoutUserInput = {
+    id?: string
+    content: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    deletedAt?: Date | string | null
+    room: RoomCreateNestedOneWithoutMessagesInput
   }
 
-  export type RoomUpdateWithWhereUniqueWithoutUsersInput = {
-    where: RoomWhereUniqueInput
-    data: XOR<RoomUpdateWithoutUsersInput, RoomUncheckedUpdateWithoutUsersInput>
+  export type MessageUncheckedCreateWithoutUserInput = {
+    id?: string
+    content: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    deletedAt?: Date | string | null
+    roomId: string
   }
 
-  export type RoomUpdateManyWithWhereWithoutUsersInput = {
-    where: RoomScalarWhereInput
-    data: XOR<RoomUpdateManyMutationInput, RoomUncheckedUpdateManyWithoutUsersInput>
-  }
-
-  export type RoomScalarWhereInput = {
-    AND?: RoomScalarWhereInput | RoomScalarWhereInput[]
-    OR?: RoomScalarWhereInput[]
-    NOT?: RoomScalarWhereInput | RoomScalarWhereInput[]
-    id?: StringFilter<"Room"> | string
-    name?: StringFilter<"Room"> | string
-    description?: StringNullableFilter<"Room"> | string | null
-    slug?: StringFilter<"Room"> | string
-    createdAt?: DateTimeFilter<"Room"> | Date | string
-    updatedAt?: DateTimeFilter<"Room"> | Date | string
-    deletedAt?: DateTimeNullableFilter<"Room"> | Date | string | null
-    creatorId?: StringFilter<"Room"> | string
-  }
-
-  export type RoomUpsertWithWhereUniqueWithoutCreatorInput = {
-    where: RoomWhereUniqueInput
-    update: XOR<RoomUpdateWithoutCreatorInput, RoomUncheckedUpdateWithoutCreatorInput>
-    create: XOR<RoomCreateWithoutCreatorInput, RoomUncheckedCreateWithoutCreatorInput>
-  }
-
-  export type RoomUpdateWithWhereUniqueWithoutCreatorInput = {
-    where: RoomWhereUniqueInput
-    data: XOR<RoomUpdateWithoutCreatorInput, RoomUncheckedUpdateWithoutCreatorInput>
-  }
-
-  export type RoomUpdateManyWithWhereWithoutCreatorInput = {
-    where: RoomScalarWhereInput
-    data: XOR<RoomUpdateManyMutationInput, RoomUncheckedUpdateManyWithoutCreatorInput>
-  }
-
-  export type MessageUpsertWithWhereUniqueWithoutUserInput = {
+  export type MessageCreateOrConnectWithoutUserInput = {
     where: MessageWhereUniqueInput
-    update: XOR<MessageUpdateWithoutUserInput, MessageUncheckedUpdateWithoutUserInput>
     create: XOR<MessageCreateWithoutUserInput, MessageUncheckedCreateWithoutUserInput>
   }
 
-  export type MessageUpdateWithWhereUniqueWithoutUserInput = {
-    where: MessageWhereUniqueInput
-    data: XOR<MessageUpdateWithoutUserInput, MessageUncheckedUpdateWithoutUserInput>
+  export type MessageCreateManyUserInputEnvelope = {
+    data: MessageCreateManyUserInput | MessageCreateManyUserInput[]
+    skipDuplicates?: boolean
   }
 
-  export type MessageUpdateManyWithWhereWithoutUserInput = {
-    where: MessageScalarWhereInput
-    data: XOR<MessageUpdateManyMutationInput, MessageUncheckedUpdateManyWithoutUserInput>
+  export type RoomCreateWithoutCreatorInput = {
+    id?: string
+    name: string
+    description?: string | null
+    slug: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    deletedAt?: Date | string | null
+    media?: MediaCreateNestedManyWithoutRoomInput
+    messages?: MessageCreateNestedManyWithoutRoomInput
+    users?: UserCreateNestedManyWithoutRoomsInput
   }
 
-  export type MessageScalarWhereInput = {
-    AND?: MessageScalarWhereInput | MessageScalarWhereInput[]
-    OR?: MessageScalarWhereInput[]
-    NOT?: MessageScalarWhereInput | MessageScalarWhereInput[]
-    id?: StringFilter<"Message"> | string
-    content?: StringFilter<"Message"> | string
-    createdAt?: DateTimeFilter<"Message"> | Date | string
-    updatedAt?: DateTimeFilter<"Message"> | Date | string
-    deletedAt?: DateTimeNullableFilter<"Message"> | Date | string | null
-    userId?: StringFilter<"Message"> | string
-    roomId?: StringFilter<"Message"> | string
+  export type RoomUncheckedCreateWithoutCreatorInput = {
+    id?: string
+    name: string
+    description?: string | null
+    slug: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    deletedAt?: Date | string | null
+    media?: MediaUncheckedCreateNestedManyWithoutRoomInput
+    messages?: MessageUncheckedCreateNestedManyWithoutRoomInput
+    users?: UserUncheckedCreateNestedManyWithoutRoomsInput
+  }
+
+  export type RoomCreateOrConnectWithoutCreatorInput = {
+    where: RoomWhereUniqueInput
+    create: XOR<RoomCreateWithoutCreatorInput, RoomUncheckedCreateWithoutCreatorInput>
+  }
+
+  export type RoomCreateManyCreatorInputEnvelope = {
+    data: RoomCreateManyCreatorInput | RoomCreateManyCreatorInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type RoomCreateWithoutUsersInput = {
+    id?: string
+    name: string
+    description?: string | null
+    slug: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    deletedAt?: Date | string | null
+    media?: MediaCreateNestedManyWithoutRoomInput
+    messages?: MessageCreateNestedManyWithoutRoomInput
+    creator: UserCreateNestedOneWithoutCreatedRoomsInput
+  }
+
+  export type RoomUncheckedCreateWithoutUsersInput = {
+    id?: string
+    name: string
+    description?: string | null
+    slug: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    deletedAt?: Date | string | null
+    creatorId: string
+    media?: MediaUncheckedCreateNestedManyWithoutRoomInput
+    messages?: MessageUncheckedCreateNestedManyWithoutRoomInput
+  }
+
+  export type RoomCreateOrConnectWithoutUsersInput = {
+    where: RoomWhereUniqueInput
+    create: XOR<RoomCreateWithoutUsersInput, RoomUncheckedCreateWithoutUsersInput>
   }
 
   export type AIQueryUpsertWithWhereUniqueWithoutUserInput = {
@@ -9400,110 +9325,79 @@ export namespace Prisma {
     roomId?: StringFilter<"Media"> | string
   }
 
-  export type UserCreateWithoutCreatedRoomsInput = {
-    id?: string
-    username: string
-    firstName: string
-    lastName: string
-    email: string
-    password: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    role?: $Enums.UserRole | null
-    deletedAt?: Date | string | null
-    rooms?: RoomCreateNestedManyWithoutUsersInput
-    messages?: MessageCreateNestedManyWithoutUserInput
-    aiQueries?: AIQueryCreateNestedManyWithoutUserInput
-    media?: MediaCreateNestedManyWithoutUserInput
-  }
-
-  export type UserUncheckedCreateWithoutCreatedRoomsInput = {
-    id?: string
-    username: string
-    firstName: string
-    lastName: string
-    email: string
-    password: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    role?: $Enums.UserRole | null
-    deletedAt?: Date | string | null
-    rooms?: RoomUncheckedCreateNestedManyWithoutUsersInput
-    messages?: MessageUncheckedCreateNestedManyWithoutUserInput
-    aiQueries?: AIQueryUncheckedCreateNestedManyWithoutUserInput
-    media?: MediaUncheckedCreateNestedManyWithoutUserInput
-  }
-
-  export type UserCreateOrConnectWithoutCreatedRoomsInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutCreatedRoomsInput, UserUncheckedCreateWithoutCreatedRoomsInput>
-  }
-
-  export type UserCreateWithoutRoomsInput = {
-    id?: string
-    username: string
-    firstName: string
-    lastName: string
-    email: string
-    password: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    role?: $Enums.UserRole | null
-    deletedAt?: Date | string | null
-    createdRooms?: RoomCreateNestedManyWithoutCreatorInput
-    messages?: MessageCreateNestedManyWithoutUserInput
-    aiQueries?: AIQueryCreateNestedManyWithoutUserInput
-    media?: MediaCreateNestedManyWithoutUserInput
-  }
-
-  export type UserUncheckedCreateWithoutRoomsInput = {
-    id?: string
-    username: string
-    firstName: string
-    lastName: string
-    email: string
-    password: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    role?: $Enums.UserRole | null
-    deletedAt?: Date | string | null
-    createdRooms?: RoomUncheckedCreateNestedManyWithoutCreatorInput
-    messages?: MessageUncheckedCreateNestedManyWithoutUserInput
-    aiQueries?: AIQueryUncheckedCreateNestedManyWithoutUserInput
-    media?: MediaUncheckedCreateNestedManyWithoutUserInput
-  }
-
-  export type UserCreateOrConnectWithoutRoomsInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutRoomsInput, UserUncheckedCreateWithoutRoomsInput>
-  }
-
-  export type MessageCreateWithoutRoomInput = {
-    id?: string
-    content: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    deletedAt?: Date | string | null
-    user: UserCreateNestedOneWithoutMessagesInput
-  }
-
-  export type MessageUncheckedCreateWithoutRoomInput = {
-    id?: string
-    content: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    deletedAt?: Date | string | null
-    userId: string
-  }
-
-  export type MessageCreateOrConnectWithoutRoomInput = {
+  export type MessageUpsertWithWhereUniqueWithoutUserInput = {
     where: MessageWhereUniqueInput
-    create: XOR<MessageCreateWithoutRoomInput, MessageUncheckedCreateWithoutRoomInput>
+    update: XOR<MessageUpdateWithoutUserInput, MessageUncheckedUpdateWithoutUserInput>
+    create: XOR<MessageCreateWithoutUserInput, MessageUncheckedCreateWithoutUserInput>
   }
 
-  export type MessageCreateManyRoomInputEnvelope = {
-    data: MessageCreateManyRoomInput | MessageCreateManyRoomInput[]
-    skipDuplicates?: boolean
+  export type MessageUpdateWithWhereUniqueWithoutUserInput = {
+    where: MessageWhereUniqueInput
+    data: XOR<MessageUpdateWithoutUserInput, MessageUncheckedUpdateWithoutUserInput>
+  }
+
+  export type MessageUpdateManyWithWhereWithoutUserInput = {
+    where: MessageScalarWhereInput
+    data: XOR<MessageUpdateManyMutationInput, MessageUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type MessageScalarWhereInput = {
+    AND?: MessageScalarWhereInput | MessageScalarWhereInput[]
+    OR?: MessageScalarWhereInput[]
+    NOT?: MessageScalarWhereInput | MessageScalarWhereInput[]
+    id?: StringFilter<"Message"> | string
+    content?: StringFilter<"Message"> | string
+    createdAt?: DateTimeFilter<"Message"> | Date | string
+    updatedAt?: DateTimeFilter<"Message"> | Date | string
+    deletedAt?: DateTimeNullableFilter<"Message"> | Date | string | null
+    userId?: StringFilter<"Message"> | string
+    roomId?: StringFilter<"Message"> | string
+  }
+
+  export type RoomUpsertWithWhereUniqueWithoutCreatorInput = {
+    where: RoomWhereUniqueInput
+    update: XOR<RoomUpdateWithoutCreatorInput, RoomUncheckedUpdateWithoutCreatorInput>
+    create: XOR<RoomCreateWithoutCreatorInput, RoomUncheckedCreateWithoutCreatorInput>
+  }
+
+  export type RoomUpdateWithWhereUniqueWithoutCreatorInput = {
+    where: RoomWhereUniqueInput
+    data: XOR<RoomUpdateWithoutCreatorInput, RoomUncheckedUpdateWithoutCreatorInput>
+  }
+
+  export type RoomUpdateManyWithWhereWithoutCreatorInput = {
+    where: RoomScalarWhereInput
+    data: XOR<RoomUpdateManyMutationInput, RoomUncheckedUpdateManyWithoutCreatorInput>
+  }
+
+  export type RoomScalarWhereInput = {
+    AND?: RoomScalarWhereInput | RoomScalarWhereInput[]
+    OR?: RoomScalarWhereInput[]
+    NOT?: RoomScalarWhereInput | RoomScalarWhereInput[]
+    id?: StringFilter<"Room"> | string
+    name?: StringFilter<"Room"> | string
+    description?: StringNullableFilter<"Room"> | string | null
+    slug?: StringFilter<"Room"> | string
+    createdAt?: DateTimeFilter<"Room"> | Date | string
+    updatedAt?: DateTimeFilter<"Room"> | Date | string
+    deletedAt?: DateTimeNullableFilter<"Room"> | Date | string | null
+    creatorId?: StringFilter<"Room"> | string
+  }
+
+  export type RoomUpsertWithWhereUniqueWithoutUsersInput = {
+    where: RoomWhereUniqueInput
+    update: XOR<RoomUpdateWithoutUsersInput, RoomUncheckedUpdateWithoutUsersInput>
+    create: XOR<RoomCreateWithoutUsersInput, RoomUncheckedCreateWithoutUsersInput>
+  }
+
+  export type RoomUpdateWithWhereUniqueWithoutUsersInput = {
+    where: RoomWhereUniqueInput
+    data: XOR<RoomUpdateWithoutUsersInput, RoomUncheckedUpdateWithoutUsersInput>
+  }
+
+  export type RoomUpdateManyWithWhereWithoutUsersInput = {
+    where: RoomScalarWhereInput
+    data: XOR<RoomUpdateManyMutationInput, RoomUncheckedUpdateManyWithoutUsersInput>
   }
 
   export type MediaCreateWithoutRoomInput = {
@@ -9534,6 +9428,144 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type MessageCreateWithoutRoomInput = {
+    id?: string
+    content: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    deletedAt?: Date | string | null
+    user: UserCreateNestedOneWithoutMessagesInput
+  }
+
+  export type MessageUncheckedCreateWithoutRoomInput = {
+    id?: string
+    content: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    deletedAt?: Date | string | null
+    userId: string
+  }
+
+  export type MessageCreateOrConnectWithoutRoomInput = {
+    where: MessageWhereUniqueInput
+    create: XOR<MessageCreateWithoutRoomInput, MessageUncheckedCreateWithoutRoomInput>
+  }
+
+  export type MessageCreateManyRoomInputEnvelope = {
+    data: MessageCreateManyRoomInput | MessageCreateManyRoomInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type UserCreateWithoutCreatedRoomsInput = {
+    id?: string
+    username: string
+    firstName?: string
+    lastName?: string
+    email: string
+    password: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    role?: $Enums.UserRole | null
+    deletedAt?: Date | string | null
+    aiQueries?: AIQueryCreateNestedManyWithoutUserInput
+    media?: MediaCreateNestedManyWithoutUserInput
+    messages?: MessageCreateNestedManyWithoutUserInput
+    rooms?: RoomCreateNestedManyWithoutUsersInput
+  }
+
+  export type UserUncheckedCreateWithoutCreatedRoomsInput = {
+    id?: string
+    username: string
+    firstName?: string
+    lastName?: string
+    email: string
+    password: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    role?: $Enums.UserRole | null
+    deletedAt?: Date | string | null
+    aiQueries?: AIQueryUncheckedCreateNestedManyWithoutUserInput
+    media?: MediaUncheckedCreateNestedManyWithoutUserInput
+    messages?: MessageUncheckedCreateNestedManyWithoutUserInput
+    rooms?: RoomUncheckedCreateNestedManyWithoutUsersInput
+  }
+
+  export type UserCreateOrConnectWithoutCreatedRoomsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutCreatedRoomsInput, UserUncheckedCreateWithoutCreatedRoomsInput>
+  }
+
+  export type UserCreateWithoutRoomsInput = {
+    id?: string
+    username: string
+    firstName?: string
+    lastName?: string
+    email: string
+    password: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    role?: $Enums.UserRole | null
+    deletedAt?: Date | string | null
+    aiQueries?: AIQueryCreateNestedManyWithoutUserInput
+    media?: MediaCreateNestedManyWithoutUserInput
+    messages?: MessageCreateNestedManyWithoutUserInput
+    createdRooms?: RoomCreateNestedManyWithoutCreatorInput
+  }
+
+  export type UserUncheckedCreateWithoutRoomsInput = {
+    id?: string
+    username: string
+    firstName?: string
+    lastName?: string
+    email: string
+    password: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    role?: $Enums.UserRole | null
+    deletedAt?: Date | string | null
+    aiQueries?: AIQueryUncheckedCreateNestedManyWithoutUserInput
+    media?: MediaUncheckedCreateNestedManyWithoutUserInput
+    messages?: MessageUncheckedCreateNestedManyWithoutUserInput
+    createdRooms?: RoomUncheckedCreateNestedManyWithoutCreatorInput
+  }
+
+  export type UserCreateOrConnectWithoutRoomsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutRoomsInput, UserUncheckedCreateWithoutRoomsInput>
+  }
+
+  export type MediaUpsertWithWhereUniqueWithoutRoomInput = {
+    where: MediaWhereUniqueInput
+    update: XOR<MediaUpdateWithoutRoomInput, MediaUncheckedUpdateWithoutRoomInput>
+    create: XOR<MediaCreateWithoutRoomInput, MediaUncheckedCreateWithoutRoomInput>
+  }
+
+  export type MediaUpdateWithWhereUniqueWithoutRoomInput = {
+    where: MediaWhereUniqueInput
+    data: XOR<MediaUpdateWithoutRoomInput, MediaUncheckedUpdateWithoutRoomInput>
+  }
+
+  export type MediaUpdateManyWithWhereWithoutRoomInput = {
+    where: MediaScalarWhereInput
+    data: XOR<MediaUpdateManyMutationInput, MediaUncheckedUpdateManyWithoutRoomInput>
+  }
+
+  export type MessageUpsertWithWhereUniqueWithoutRoomInput = {
+    where: MessageWhereUniqueInput
+    update: XOR<MessageUpdateWithoutRoomInput, MessageUncheckedUpdateWithoutRoomInput>
+    create: XOR<MessageCreateWithoutRoomInput, MessageUncheckedCreateWithoutRoomInput>
+  }
+
+  export type MessageUpdateWithWhereUniqueWithoutRoomInput = {
+    where: MessageWhereUniqueInput
+    data: XOR<MessageUpdateWithoutRoomInput, MessageUncheckedUpdateWithoutRoomInput>
+  }
+
+  export type MessageUpdateManyWithWhereWithoutRoomInput = {
+    where: MessageScalarWhereInput
+    data: XOR<MessageUpdateManyMutationInput, MessageUncheckedUpdateManyWithoutRoomInput>
+  }
+
   export type UserUpsertWithoutCreatedRoomsInput = {
     update: XOR<UserUpdateWithoutCreatedRoomsInput, UserUncheckedUpdateWithoutCreatedRoomsInput>
     create: XOR<UserCreateWithoutCreatedRoomsInput, UserUncheckedCreateWithoutCreatedRoomsInput>
@@ -9556,10 +9588,10 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     role?: NullableEnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    rooms?: RoomUpdateManyWithoutUsersNestedInput
-    messages?: MessageUpdateManyWithoutUserNestedInput
     aiQueries?: AIQueryUpdateManyWithoutUserNestedInput
     media?: MediaUpdateManyWithoutUserNestedInput
+    messages?: MessageUpdateManyWithoutUserNestedInput
+    rooms?: RoomUpdateManyWithoutUsersNestedInput
   }
 
   export type UserUncheckedUpdateWithoutCreatedRoomsInput = {
@@ -9573,10 +9605,10 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     role?: NullableEnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    rooms?: RoomUncheckedUpdateManyWithoutUsersNestedInput
-    messages?: MessageUncheckedUpdateManyWithoutUserNestedInput
     aiQueries?: AIQueryUncheckedUpdateManyWithoutUserNestedInput
     media?: MediaUncheckedUpdateManyWithoutUserNestedInput
+    messages?: MessageUncheckedUpdateManyWithoutUserNestedInput
+    rooms?: RoomUncheckedUpdateManyWithoutUsersNestedInput
   }
 
   export type UserUpsertWithWhereUniqueWithoutRoomsInput = {
@@ -9611,77 +9643,6 @@ export namespace Prisma {
     deletedAt?: DateTimeNullableFilter<"User"> | Date | string | null
   }
 
-  export type MessageUpsertWithWhereUniqueWithoutRoomInput = {
-    where: MessageWhereUniqueInput
-    update: XOR<MessageUpdateWithoutRoomInput, MessageUncheckedUpdateWithoutRoomInput>
-    create: XOR<MessageCreateWithoutRoomInput, MessageUncheckedCreateWithoutRoomInput>
-  }
-
-  export type MessageUpdateWithWhereUniqueWithoutRoomInput = {
-    where: MessageWhereUniqueInput
-    data: XOR<MessageUpdateWithoutRoomInput, MessageUncheckedUpdateWithoutRoomInput>
-  }
-
-  export type MessageUpdateManyWithWhereWithoutRoomInput = {
-    where: MessageScalarWhereInput
-    data: XOR<MessageUpdateManyMutationInput, MessageUncheckedUpdateManyWithoutRoomInput>
-  }
-
-  export type MediaUpsertWithWhereUniqueWithoutRoomInput = {
-    where: MediaWhereUniqueInput
-    update: XOR<MediaUpdateWithoutRoomInput, MediaUncheckedUpdateWithoutRoomInput>
-    create: XOR<MediaCreateWithoutRoomInput, MediaUncheckedCreateWithoutRoomInput>
-  }
-
-  export type MediaUpdateWithWhereUniqueWithoutRoomInput = {
-    where: MediaWhereUniqueInput
-    data: XOR<MediaUpdateWithoutRoomInput, MediaUncheckedUpdateWithoutRoomInput>
-  }
-
-  export type MediaUpdateManyWithWhereWithoutRoomInput = {
-    where: MediaScalarWhereInput
-    data: XOR<MediaUpdateManyMutationInput, MediaUncheckedUpdateManyWithoutRoomInput>
-  }
-
-  export type UserCreateWithoutMessagesInput = {
-    id?: string
-    username: string
-    firstName: string
-    lastName: string
-    email: string
-    password: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    role?: $Enums.UserRole | null
-    deletedAt?: Date | string | null
-    rooms?: RoomCreateNestedManyWithoutUsersInput
-    createdRooms?: RoomCreateNestedManyWithoutCreatorInput
-    aiQueries?: AIQueryCreateNestedManyWithoutUserInput
-    media?: MediaCreateNestedManyWithoutUserInput
-  }
-
-  export type UserUncheckedCreateWithoutMessagesInput = {
-    id?: string
-    username: string
-    firstName: string
-    lastName: string
-    email: string
-    password: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    role?: $Enums.UserRole | null
-    deletedAt?: Date | string | null
-    rooms?: RoomUncheckedCreateNestedManyWithoutUsersInput
-    createdRooms?: RoomUncheckedCreateNestedManyWithoutCreatorInput
-    aiQueries?: AIQueryUncheckedCreateNestedManyWithoutUserInput
-    media?: MediaUncheckedCreateNestedManyWithoutUserInput
-  }
-
-  export type UserCreateOrConnectWithoutMessagesInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutMessagesInput, UserUncheckedCreateWithoutMessagesInput>
-  }
-
   export type RoomCreateWithoutMessagesInput = {
     id?: string
     name: string
@@ -9690,9 +9651,9 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     deletedAt?: Date | string | null
+    media?: MediaCreateNestedManyWithoutRoomInput
     creator: UserCreateNestedOneWithoutCreatedRoomsInput
     users?: UserCreateNestedManyWithoutRoomsInput
-    media?: MediaCreateNestedManyWithoutRoomInput
   }
 
   export type RoomUncheckedCreateWithoutMessagesInput = {
@@ -9704,13 +9665,89 @@ export namespace Prisma {
     updatedAt?: Date | string
     deletedAt?: Date | string | null
     creatorId: string
-    users?: UserUncheckedCreateNestedManyWithoutRoomsInput
     media?: MediaUncheckedCreateNestedManyWithoutRoomInput
+    users?: UserUncheckedCreateNestedManyWithoutRoomsInput
   }
 
   export type RoomCreateOrConnectWithoutMessagesInput = {
     where: RoomWhereUniqueInput
     create: XOR<RoomCreateWithoutMessagesInput, RoomUncheckedCreateWithoutMessagesInput>
+  }
+
+  export type UserCreateWithoutMessagesInput = {
+    id?: string
+    username: string
+    firstName?: string
+    lastName?: string
+    email: string
+    password: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    role?: $Enums.UserRole | null
+    deletedAt?: Date | string | null
+    aiQueries?: AIQueryCreateNestedManyWithoutUserInput
+    media?: MediaCreateNestedManyWithoutUserInput
+    createdRooms?: RoomCreateNestedManyWithoutCreatorInput
+    rooms?: RoomCreateNestedManyWithoutUsersInput
+  }
+
+  export type UserUncheckedCreateWithoutMessagesInput = {
+    id?: string
+    username: string
+    firstName?: string
+    lastName?: string
+    email: string
+    password: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    role?: $Enums.UserRole | null
+    deletedAt?: Date | string | null
+    aiQueries?: AIQueryUncheckedCreateNestedManyWithoutUserInput
+    media?: MediaUncheckedCreateNestedManyWithoutUserInput
+    createdRooms?: RoomUncheckedCreateNestedManyWithoutCreatorInput
+    rooms?: RoomUncheckedCreateNestedManyWithoutUsersInput
+  }
+
+  export type UserCreateOrConnectWithoutMessagesInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutMessagesInput, UserUncheckedCreateWithoutMessagesInput>
+  }
+
+  export type RoomUpsertWithoutMessagesInput = {
+    update: XOR<RoomUpdateWithoutMessagesInput, RoomUncheckedUpdateWithoutMessagesInput>
+    create: XOR<RoomCreateWithoutMessagesInput, RoomUncheckedCreateWithoutMessagesInput>
+    where?: RoomWhereInput
+  }
+
+  export type RoomUpdateToOneWithWhereWithoutMessagesInput = {
+    where?: RoomWhereInput
+    data: XOR<RoomUpdateWithoutMessagesInput, RoomUncheckedUpdateWithoutMessagesInput>
+  }
+
+  export type RoomUpdateWithoutMessagesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    slug?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    media?: MediaUpdateManyWithoutRoomNestedInput
+    creator?: UserUpdateOneRequiredWithoutCreatedRoomsNestedInput
+    users?: UserUpdateManyWithoutRoomsNestedInput
+  }
+
+  export type RoomUncheckedUpdateWithoutMessagesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    slug?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    creatorId?: StringFieldUpdateOperationsInput | string
+    media?: MediaUncheckedUpdateManyWithoutRoomNestedInput
+    users?: UserUncheckedUpdateManyWithoutRoomsNestedInput
   }
 
   export type UserUpsertWithoutMessagesInput = {
@@ -9735,10 +9772,10 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     role?: NullableEnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    rooms?: RoomUpdateManyWithoutUsersNestedInput
-    createdRooms?: RoomUpdateManyWithoutCreatorNestedInput
     aiQueries?: AIQueryUpdateManyWithoutUserNestedInput
     media?: MediaUpdateManyWithoutUserNestedInput
+    createdRooms?: RoomUpdateManyWithoutCreatorNestedInput
+    rooms?: RoomUpdateManyWithoutUsersNestedInput
   }
 
   export type UserUncheckedUpdateWithoutMessagesInput = {
@@ -9752,86 +9789,10 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     role?: NullableEnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    rooms?: RoomUncheckedUpdateManyWithoutUsersNestedInput
-    createdRooms?: RoomUncheckedUpdateManyWithoutCreatorNestedInput
     aiQueries?: AIQueryUncheckedUpdateManyWithoutUserNestedInput
     media?: MediaUncheckedUpdateManyWithoutUserNestedInput
-  }
-
-  export type RoomUpsertWithoutMessagesInput = {
-    update: XOR<RoomUpdateWithoutMessagesInput, RoomUncheckedUpdateWithoutMessagesInput>
-    create: XOR<RoomCreateWithoutMessagesInput, RoomUncheckedCreateWithoutMessagesInput>
-    where?: RoomWhereInput
-  }
-
-  export type RoomUpdateToOneWithWhereWithoutMessagesInput = {
-    where?: RoomWhereInput
-    data: XOR<RoomUpdateWithoutMessagesInput, RoomUncheckedUpdateWithoutMessagesInput>
-  }
-
-  export type RoomUpdateWithoutMessagesInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    slug?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    creator?: UserUpdateOneRequiredWithoutCreatedRoomsNestedInput
-    users?: UserUpdateManyWithoutRoomsNestedInput
-    media?: MediaUpdateManyWithoutRoomNestedInput
-  }
-
-  export type RoomUncheckedUpdateWithoutMessagesInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    slug?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    creatorId?: StringFieldUpdateOperationsInput | string
-    users?: UserUncheckedUpdateManyWithoutRoomsNestedInput
-    media?: MediaUncheckedUpdateManyWithoutRoomNestedInput
-  }
-
-  export type UserCreateWithoutMediaInput = {
-    id?: string
-    username: string
-    firstName: string
-    lastName: string
-    email: string
-    password: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    role?: $Enums.UserRole | null
-    deletedAt?: Date | string | null
-    rooms?: RoomCreateNestedManyWithoutUsersInput
-    createdRooms?: RoomCreateNestedManyWithoutCreatorInput
-    messages?: MessageCreateNestedManyWithoutUserInput
-    aiQueries?: AIQueryCreateNestedManyWithoutUserInput
-  }
-
-  export type UserUncheckedCreateWithoutMediaInput = {
-    id?: string
-    username: string
-    firstName: string
-    lastName: string
-    email: string
-    password: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    role?: $Enums.UserRole | null
-    deletedAt?: Date | string | null
-    rooms?: RoomUncheckedCreateNestedManyWithoutUsersInput
-    createdRooms?: RoomUncheckedCreateNestedManyWithoutCreatorInput
-    messages?: MessageUncheckedCreateNestedManyWithoutUserInput
-    aiQueries?: AIQueryUncheckedCreateNestedManyWithoutUserInput
-  }
-
-  export type UserCreateOrConnectWithoutMediaInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutMediaInput, UserUncheckedCreateWithoutMediaInput>
+    createdRooms?: RoomUncheckedUpdateManyWithoutCreatorNestedInput
+    rooms?: RoomUncheckedUpdateManyWithoutUsersNestedInput
   }
 
   export type RoomCreateWithoutMediaInput = {
@@ -9842,9 +9803,9 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     deletedAt?: Date | string | null
+    messages?: MessageCreateNestedManyWithoutRoomInput
     creator: UserCreateNestedOneWithoutCreatedRoomsInput
     users?: UserCreateNestedManyWithoutRoomsInput
-    messages?: MessageCreateNestedManyWithoutRoomInput
   }
 
   export type RoomUncheckedCreateWithoutMediaInput = {
@@ -9856,13 +9817,89 @@ export namespace Prisma {
     updatedAt?: Date | string
     deletedAt?: Date | string | null
     creatorId: string
-    users?: UserUncheckedCreateNestedManyWithoutRoomsInput
     messages?: MessageUncheckedCreateNestedManyWithoutRoomInput
+    users?: UserUncheckedCreateNestedManyWithoutRoomsInput
   }
 
   export type RoomCreateOrConnectWithoutMediaInput = {
     where: RoomWhereUniqueInput
     create: XOR<RoomCreateWithoutMediaInput, RoomUncheckedCreateWithoutMediaInput>
+  }
+
+  export type UserCreateWithoutMediaInput = {
+    id?: string
+    username: string
+    firstName?: string
+    lastName?: string
+    email: string
+    password: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    role?: $Enums.UserRole | null
+    deletedAt?: Date | string | null
+    aiQueries?: AIQueryCreateNestedManyWithoutUserInput
+    messages?: MessageCreateNestedManyWithoutUserInput
+    createdRooms?: RoomCreateNestedManyWithoutCreatorInput
+    rooms?: RoomCreateNestedManyWithoutUsersInput
+  }
+
+  export type UserUncheckedCreateWithoutMediaInput = {
+    id?: string
+    username: string
+    firstName?: string
+    lastName?: string
+    email: string
+    password: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    role?: $Enums.UserRole | null
+    deletedAt?: Date | string | null
+    aiQueries?: AIQueryUncheckedCreateNestedManyWithoutUserInput
+    messages?: MessageUncheckedCreateNestedManyWithoutUserInput
+    createdRooms?: RoomUncheckedCreateNestedManyWithoutCreatorInput
+    rooms?: RoomUncheckedCreateNestedManyWithoutUsersInput
+  }
+
+  export type UserCreateOrConnectWithoutMediaInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutMediaInput, UserUncheckedCreateWithoutMediaInput>
+  }
+
+  export type RoomUpsertWithoutMediaInput = {
+    update: XOR<RoomUpdateWithoutMediaInput, RoomUncheckedUpdateWithoutMediaInput>
+    create: XOR<RoomCreateWithoutMediaInput, RoomUncheckedCreateWithoutMediaInput>
+    where?: RoomWhereInput
+  }
+
+  export type RoomUpdateToOneWithWhereWithoutMediaInput = {
+    where?: RoomWhereInput
+    data: XOR<RoomUpdateWithoutMediaInput, RoomUncheckedUpdateWithoutMediaInput>
+  }
+
+  export type RoomUpdateWithoutMediaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    slug?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    messages?: MessageUpdateManyWithoutRoomNestedInput
+    creator?: UserUpdateOneRequiredWithoutCreatedRoomsNestedInput
+    users?: UserUpdateManyWithoutRoomsNestedInput
+  }
+
+  export type RoomUncheckedUpdateWithoutMediaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    slug?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    creatorId?: StringFieldUpdateOperationsInput | string
+    messages?: MessageUncheckedUpdateManyWithoutRoomNestedInput
+    users?: UserUncheckedUpdateManyWithoutRoomsNestedInput
   }
 
   export type UserUpsertWithoutMediaInput = {
@@ -9887,10 +9924,10 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     role?: NullableEnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    rooms?: RoomUpdateManyWithoutUsersNestedInput
-    createdRooms?: RoomUpdateManyWithoutCreatorNestedInput
-    messages?: MessageUpdateManyWithoutUserNestedInput
     aiQueries?: AIQueryUpdateManyWithoutUserNestedInput
+    messages?: MessageUpdateManyWithoutUserNestedInput
+    createdRooms?: RoomUpdateManyWithoutCreatorNestedInput
+    rooms?: RoomUpdateManyWithoutUsersNestedInput
   }
 
   export type UserUncheckedUpdateWithoutMediaInput = {
@@ -9904,81 +9941,44 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     role?: NullableEnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    rooms?: RoomUncheckedUpdateManyWithoutUsersNestedInput
-    createdRooms?: RoomUncheckedUpdateManyWithoutCreatorNestedInput
-    messages?: MessageUncheckedUpdateManyWithoutUserNestedInput
     aiQueries?: AIQueryUncheckedUpdateManyWithoutUserNestedInput
-  }
-
-  export type RoomUpsertWithoutMediaInput = {
-    update: XOR<RoomUpdateWithoutMediaInput, RoomUncheckedUpdateWithoutMediaInput>
-    create: XOR<RoomCreateWithoutMediaInput, RoomUncheckedCreateWithoutMediaInput>
-    where?: RoomWhereInput
-  }
-
-  export type RoomUpdateToOneWithWhereWithoutMediaInput = {
-    where?: RoomWhereInput
-    data: XOR<RoomUpdateWithoutMediaInput, RoomUncheckedUpdateWithoutMediaInput>
-  }
-
-  export type RoomUpdateWithoutMediaInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    slug?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    creator?: UserUpdateOneRequiredWithoutCreatedRoomsNestedInput
-    users?: UserUpdateManyWithoutRoomsNestedInput
-    messages?: MessageUpdateManyWithoutRoomNestedInput
-  }
-
-  export type RoomUncheckedUpdateWithoutMediaInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    slug?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    creatorId?: StringFieldUpdateOperationsInput | string
-    users?: UserUncheckedUpdateManyWithoutRoomsNestedInput
-    messages?: MessageUncheckedUpdateManyWithoutRoomNestedInput
+    messages?: MessageUncheckedUpdateManyWithoutUserNestedInput
+    createdRooms?: RoomUncheckedUpdateManyWithoutCreatorNestedInput
+    rooms?: RoomUncheckedUpdateManyWithoutUsersNestedInput
   }
 
   export type UserCreateWithoutAiQueriesInput = {
     id?: string
     username: string
-    firstName: string
-    lastName: string
+    firstName?: string
+    lastName?: string
     email: string
     password: string
     createdAt?: Date | string
     updatedAt?: Date | string
     role?: $Enums.UserRole | null
     deletedAt?: Date | string | null
-    rooms?: RoomCreateNestedManyWithoutUsersInput
-    createdRooms?: RoomCreateNestedManyWithoutCreatorInput
-    messages?: MessageCreateNestedManyWithoutUserInput
     media?: MediaCreateNestedManyWithoutUserInput
+    messages?: MessageCreateNestedManyWithoutUserInput
+    createdRooms?: RoomCreateNestedManyWithoutCreatorInput
+    rooms?: RoomCreateNestedManyWithoutUsersInput
   }
 
   export type UserUncheckedCreateWithoutAiQueriesInput = {
     id?: string
     username: string
-    firstName: string
-    lastName: string
+    firstName?: string
+    lastName?: string
     email: string
     password: string
     createdAt?: Date | string
     updatedAt?: Date | string
     role?: $Enums.UserRole | null
     deletedAt?: Date | string | null
-    rooms?: RoomUncheckedCreateNestedManyWithoutUsersInput
-    createdRooms?: RoomUncheckedCreateNestedManyWithoutCreatorInput
-    messages?: MessageUncheckedCreateNestedManyWithoutUserInput
     media?: MediaUncheckedCreateNestedManyWithoutUserInput
+    messages?: MessageUncheckedCreateNestedManyWithoutUserInput
+    createdRooms?: RoomUncheckedCreateNestedManyWithoutCreatorInput
+    rooms?: RoomUncheckedCreateNestedManyWithoutUsersInput
   }
 
   export type UserCreateOrConnectWithoutAiQueriesInput = {
@@ -10008,10 +10008,10 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     role?: NullableEnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    rooms?: RoomUpdateManyWithoutUsersNestedInput
-    createdRooms?: RoomUpdateManyWithoutCreatorNestedInput
-    messages?: MessageUpdateManyWithoutUserNestedInput
     media?: MediaUpdateManyWithoutUserNestedInput
+    messages?: MessageUpdateManyWithoutUserNestedInput
+    createdRooms?: RoomUpdateManyWithoutCreatorNestedInput
+    rooms?: RoomUpdateManyWithoutUsersNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAiQueriesInput = {
@@ -10025,29 +10025,10 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     role?: NullableEnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    rooms?: RoomUncheckedUpdateManyWithoutUsersNestedInput
-    createdRooms?: RoomUncheckedUpdateManyWithoutCreatorNestedInput
-    messages?: MessageUncheckedUpdateManyWithoutUserNestedInput
     media?: MediaUncheckedUpdateManyWithoutUserNestedInput
-  }
-
-  export type RoomCreateManyCreatorInput = {
-    id?: string
-    name: string
-    description?: string | null
-    slug: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    deletedAt?: Date | string | null
-  }
-
-  export type MessageCreateManyUserInput = {
-    id?: string
-    content: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    deletedAt?: Date | string | null
-    roomId: string
+    messages?: MessageUncheckedUpdateManyWithoutUserNestedInput
+    createdRooms?: RoomUncheckedUpdateManyWithoutCreatorNestedInput
+    rooms?: RoomUncheckedUpdateManyWithoutUsersNestedInput
   }
 
   export type AIQueryCreateManyUserInput = {
@@ -10068,104 +10049,23 @@ export namespace Prisma {
     roomId: string
   }
 
-  export type RoomUpdateWithoutUsersInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    slug?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    creator?: UserUpdateOneRequiredWithoutCreatedRoomsNestedInput
-    messages?: MessageUpdateManyWithoutRoomNestedInput
-    media?: MediaUpdateManyWithoutRoomNestedInput
+  export type MessageCreateManyUserInput = {
+    id?: string
+    content: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    deletedAt?: Date | string | null
+    roomId: string
   }
 
-  export type RoomUncheckedUpdateWithoutUsersInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    slug?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    creatorId?: StringFieldUpdateOperationsInput | string
-    messages?: MessageUncheckedUpdateManyWithoutRoomNestedInput
-    media?: MediaUncheckedUpdateManyWithoutRoomNestedInput
-  }
-
-  export type RoomUncheckedUpdateManyWithoutUsersInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    slug?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    creatorId?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type RoomUpdateWithoutCreatorInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    slug?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    users?: UserUpdateManyWithoutRoomsNestedInput
-    messages?: MessageUpdateManyWithoutRoomNestedInput
-    media?: MediaUpdateManyWithoutRoomNestedInput
-  }
-
-  export type RoomUncheckedUpdateWithoutCreatorInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    slug?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    users?: UserUncheckedUpdateManyWithoutRoomsNestedInput
-    messages?: MessageUncheckedUpdateManyWithoutRoomNestedInput
-    media?: MediaUncheckedUpdateManyWithoutRoomNestedInput
-  }
-
-  export type RoomUncheckedUpdateManyWithoutCreatorInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    slug?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  }
-
-  export type MessageUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    content?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    room?: RoomUpdateOneRequiredWithoutMessagesNestedInput
-  }
-
-  export type MessageUncheckedUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    content?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    roomId?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type MessageUncheckedUpdateManyWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    content?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    roomId?: StringFieldUpdateOperationsInput | string
+  export type RoomCreateManyCreatorInput = {
+    id?: string
+    name: string
+    description?: string | null
+    slug: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    deletedAt?: Date | string | null
   }
 
   export type AIQueryUpdateWithoutUserInput = {
@@ -10222,13 +10122,104 @@ export namespace Prisma {
     roomId?: StringFieldUpdateOperationsInput | string
   }
 
-  export type MessageCreateManyRoomInput = {
-    id?: string
-    content: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    deletedAt?: Date | string | null
-    userId: string
+  export type MessageUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    room?: RoomUpdateOneRequiredWithoutMessagesNestedInput
+  }
+
+  export type MessageUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    roomId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type MessageUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    roomId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type RoomUpdateWithoutCreatorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    slug?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    media?: MediaUpdateManyWithoutRoomNestedInput
+    messages?: MessageUpdateManyWithoutRoomNestedInput
+    users?: UserUpdateManyWithoutRoomsNestedInput
+  }
+
+  export type RoomUncheckedUpdateWithoutCreatorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    slug?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    media?: MediaUncheckedUpdateManyWithoutRoomNestedInput
+    messages?: MessageUncheckedUpdateManyWithoutRoomNestedInput
+    users?: UserUncheckedUpdateManyWithoutRoomsNestedInput
+  }
+
+  export type RoomUncheckedUpdateManyWithoutCreatorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    slug?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type RoomUpdateWithoutUsersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    slug?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    media?: MediaUpdateManyWithoutRoomNestedInput
+    messages?: MessageUpdateManyWithoutRoomNestedInput
+    creator?: UserUpdateOneRequiredWithoutCreatedRoomsNestedInput
+  }
+
+  export type RoomUncheckedUpdateWithoutUsersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    slug?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    creatorId?: StringFieldUpdateOperationsInput | string
+    media?: MediaUncheckedUpdateManyWithoutRoomNestedInput
+    messages?: MessageUncheckedUpdateManyWithoutRoomNestedInput
+  }
+
+  export type RoomUncheckedUpdateManyWithoutUsersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    slug?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    creatorId?: StringFieldUpdateOperationsInput | string
   }
 
   export type MediaCreateManyRoomInput = {
@@ -10240,51 +10231,40 @@ export namespace Prisma {
     userId: string
   }
 
-  export type UserUpdateWithoutRoomsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
-    firstName?: StringFieldUpdateOperationsInput | string
-    lastName?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    role?: NullableEnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole | null
-    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdRooms?: RoomUpdateManyWithoutCreatorNestedInput
-    messages?: MessageUpdateManyWithoutUserNestedInput
-    aiQueries?: AIQueryUpdateManyWithoutUserNestedInput
-    media?: MediaUpdateManyWithoutUserNestedInput
+  export type MessageCreateManyRoomInput = {
+    id?: string
+    content: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    deletedAt?: Date | string | null
+    userId: string
   }
 
-  export type UserUncheckedUpdateWithoutRoomsInput = {
+  export type MediaUpdateWithoutRoomInput = {
     id?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
-    firstName?: StringFieldUpdateOperationsInput | string
-    lastName?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
+    type?: EnumMediaTypeFieldUpdateOperationsInput | $Enums.MediaType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    role?: NullableEnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole | null
-    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdRooms?: RoomUncheckedUpdateManyWithoutCreatorNestedInput
-    messages?: MessageUncheckedUpdateManyWithoutUserNestedInput
-    aiQueries?: AIQueryUncheckedUpdateManyWithoutUserNestedInput
-    media?: MediaUncheckedUpdateManyWithoutUserNestedInput
+    user?: UserUpdateOneRequiredWithoutMediaNestedInput
   }
 
-  export type UserUncheckedUpdateManyWithoutRoomsInput = {
+  export type MediaUncheckedUpdateWithoutRoomInput = {
     id?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
-    firstName?: StringFieldUpdateOperationsInput | string
-    lastName?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
+    type?: EnumMediaTypeFieldUpdateOperationsInput | $Enums.MediaType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    role?: NullableEnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole | null
-    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    userId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type MediaUncheckedUpdateManyWithoutRoomInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
+    type?: EnumMediaTypeFieldUpdateOperationsInput | $Enums.MediaType
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: StringFieldUpdateOperationsInput | string
   }
 
   export type MessageUpdateWithoutRoomInput = {
@@ -10314,31 +10294,51 @@ export namespace Prisma {
     userId?: StringFieldUpdateOperationsInput | string
   }
 
-  export type MediaUpdateWithoutRoomInput = {
+  export type UserUpdateWithoutRoomsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    url?: StringFieldUpdateOperationsInput | string
-    type?: EnumMediaTypeFieldUpdateOperationsInput | $Enums.MediaType
+    username?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutMediaNestedInput
+    role?: NullableEnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole | null
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    aiQueries?: AIQueryUpdateManyWithoutUserNestedInput
+    media?: MediaUpdateManyWithoutUserNestedInput
+    messages?: MessageUpdateManyWithoutUserNestedInput
+    createdRooms?: RoomUpdateManyWithoutCreatorNestedInput
   }
 
-  export type MediaUncheckedUpdateWithoutRoomInput = {
+  export type UserUncheckedUpdateWithoutRoomsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    url?: StringFieldUpdateOperationsInput | string
-    type?: EnumMediaTypeFieldUpdateOperationsInput | $Enums.MediaType
+    username?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    userId?: StringFieldUpdateOperationsInput | string
+    role?: NullableEnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole | null
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    aiQueries?: AIQueryUncheckedUpdateManyWithoutUserNestedInput
+    media?: MediaUncheckedUpdateManyWithoutUserNestedInput
+    messages?: MessageUncheckedUpdateManyWithoutUserNestedInput
+    createdRooms?: RoomUncheckedUpdateManyWithoutCreatorNestedInput
   }
 
-  export type MediaUncheckedUpdateManyWithoutRoomInput = {
+  export type UserUncheckedUpdateManyWithoutRoomsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    url?: StringFieldUpdateOperationsInput | string
-    type?: EnumMediaTypeFieldUpdateOperationsInput | $Enums.MediaType
+    username?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    userId?: StringFieldUpdateOperationsInput | string
+    role?: NullableEnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole | null
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
 
