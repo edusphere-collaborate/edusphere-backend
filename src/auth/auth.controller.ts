@@ -15,7 +15,12 @@ import { RegisterUserDto } from './dto/register-user.dto';
 import { UserLoginDto } from './dto/user-login.dto';
 import { LocalGuard } from './guards/local.guard';
 import { JWTAuthGuard } from './guards/jwt.guard';
+import { AuthenticatedUser } from './interfaces/jwt-payload.interface';
 import { Request } from 'express';
+
+interface AuthenticatedRequest extends Request {
+  user: AuthenticatedUser;
+}
 
 @Controller('auth')
 export class AuthController {
@@ -54,8 +59,8 @@ export class AuthController {
    */
   @Get('profile')
   @UseGuards(JWTAuthGuard)
-  async getProfile(@Req() req: Request) {
-    const user = req.user as any;
+  async getProfile(@Req() req: AuthenticatedRequest) {
+    const user = req.user;
 
     if (!user || !user.id) {
       throw new NotFoundException('User not found');
@@ -72,8 +77,11 @@ export class AuthController {
    */
   @Get('profile/:userId')
   @UseGuards(JWTAuthGuard)
-  async getProfileById(@Req() req: Request, @Param('userId') userId: string) {
-    const user = req.user as any;
+  async getProfileById(
+    @Req() req: AuthenticatedRequest,
+    @Param('userId') userId: string,
+  ) {
+    const user = req.user;
 
     // Restrict access to admins or the user themselves
     if (!user || (!user.isAdmin && user.id !== userId)) {

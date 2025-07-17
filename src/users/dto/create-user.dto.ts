@@ -13,12 +13,12 @@ export class CreateUserDto {
   @MaxLength(30)
   username: string;
 
-  @IsString({ message: 'First Name must be a string' })
   @IsOptional()
+  @IsString({ message: 'First Name must be a string' })
   firstName?: string;
 
-  @IsString({ message: 'Last Name must be a string' })
   @IsOptional()
+  @IsString({ message: 'Last Name must be a string' })
   lastName?: string;
 
   @IsEmail({}, { message: 'Email must be a valid email address' })
