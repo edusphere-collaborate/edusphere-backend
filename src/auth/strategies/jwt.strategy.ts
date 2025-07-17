@@ -11,7 +11,9 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
       ignoreExpiration: false,
       secretOrKey: (() => {
         if (!process.env.JWT_SECRET) {
-          throw new Error('JWT_SECRET environment variable is not set. Please configure it to secure your application.');
+          throw new Error(
+            'JWT_SECRET environment variable is not set. Please configure it to secure your application.',
+          );
         }
         return process.env.JWT_SECRET;
       })(),

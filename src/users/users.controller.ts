@@ -9,6 +9,7 @@ import {
   Query,
   UseGuards,
   Req,
+  UnauthorizedException,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { RegisterUserDto } from '../auth/dto/register-user.dto';

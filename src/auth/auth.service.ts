@@ -66,7 +66,7 @@ export class AuthService {
         password: hashedPassword,
         firstName: firstName || '',
         lastName: lastName || '',
-        role: 'USER', // Default role, adjust as needed
+        role: 'User', // Default role, adjust as needed
       },
       select: {
         id: true,
@@ -121,10 +121,7 @@ export class AuthService {
   async validateUser(loginDto: UserLoginDto) {
     const user = await this.prismaService.user.findFirst({
       where: {
-        OR: [
-          { email: loginDto.identifier },
-          { username: loginDto.identifier },
-        ],
+        OR: [{ email: loginDto.identifier }, { username: loginDto.identifier }],
         deletedAt: null,
       },
     });
