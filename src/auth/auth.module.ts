@@ -12,7 +12,12 @@ import { JwtStrategy } from './strategies/jwt.strategy';
     PrismaModule,
     PassportModule,
     JwtModule.register({
-      secret: process.env.JWT_SECRET || '1234',
+      secret: (() => {
+        if (!process.env.JWT_SECRET) {
+          throw new Error('JWT_SECRET environment variable is not set. Please configure it to ensure application security.');
+        }
+        return process.env.JWT_SECRET;
+      })(),
       signOptions: { expiresIn: '1h' },
     }),
   ],
