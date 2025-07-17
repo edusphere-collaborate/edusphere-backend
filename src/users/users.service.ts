@@ -49,10 +49,7 @@ export class UsersService {
   async remove(id: string) {
     const existingUser = await this.findOne(id);
 
-    if (!existingUser) {
-      // This line will never be reached if findOne throws an error when user doesn't exist
-      throw new NotFoundException(`User with ID ${id} not found`);
-    }
+    // The findOne method already throws a NotFoundException if the user doesn't exist
 
     return await this.prismaService.user.update({
       where: { id },
