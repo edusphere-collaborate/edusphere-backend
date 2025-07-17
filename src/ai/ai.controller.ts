@@ -14,8 +14,8 @@ export class AiController {
    * Returns: { id, userId, query, response, createdAt }
    */
   @Post('query')
-  create(@Body() createAiQueryDto: CreateAiQueryDto) {
-    const query = this.aiService.create(createAiQueryDto);
+  async create(@Body() createAiQueryDto: CreateAiQueryDto) {
+    const query = await this.aiService.create(createAiQueryDto);
 
     return {
       query,
