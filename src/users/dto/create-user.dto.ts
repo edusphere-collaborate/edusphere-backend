@@ -20,11 +20,11 @@ export class CreateUserDto {
   @IsNotEmpty({ message: 'Last Name must not be empty' })
   lastName: string;
 
-  @IsEmail()
-  @MaxLength(50)
+  @IsEmail({}, { message: 'Email must be a valid email address' })
+  @MaxLength(50, { message: 'Email must not exceed 50 characters' })
   email: string;
 
-  @IsString({ message: 'password must be string' })
-  @MinLength(6)
+  @IsString({ message: 'Password must be a string' })
+  @MinLength(6, { message: 'Password must be at least 6 characters' })
   password: string;
 }

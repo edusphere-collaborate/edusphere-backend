@@ -14,6 +14,8 @@ export class CreateRoomDto {
   description?: string;
 
   @IsString()
+  @IsNotEmpty()
+  @MaxLength(100)
   slug: string;
 
   @IsString()

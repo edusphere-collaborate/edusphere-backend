@@ -41,10 +41,6 @@ export class RoomsService {
     // Ensure room exists first
     const existingRoom = await this.findOne(id);
 
-    if (!existingRoom) {
-      throw new NotFoundException(`Room with id ${id} not found`);
-    }
-
     return await this.prisma.room.update({
       where: { id },
       data: updateRoomDto,

@@ -34,10 +34,8 @@ export class UsersService {
 
   // Update user by ID
   async update(id: string, updateUserDto: UpdateUserDto) {
-    // Ensure user exists before updating
-    const existingUser = await this.findOne(id);
-
     // The findOne method already throws a NotFoundException if the user doesn't exist
+    await this.findOne(id);
 
     return await this.prismaService.user.update({
       where: { id },
@@ -47,7 +45,8 @@ export class UsersService {
 
   // Soft-delete user (sets deletedAt)
   async remove(id: string) {
-    const existingUser = await this.findOne(id);
+    // The findOne method already throws a NotFoundException if the user doesn't exist
+    await this.findOne(id);
 
     return await this.prismaService.user.update({
       where: { id },

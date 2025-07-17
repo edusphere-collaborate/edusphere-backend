@@ -37,7 +37,7 @@ export class RoomsGatewayGateway {
     // Let the client join the room (socket.io level)
     await client.join(data.room_id);
 
-    // Optionally: fetch username from thr DB or mock it here
+    // Optionally: fetch username from the DB or mock it here
     const username = `User_${data.user_id}`;
 
     // Broadcast to other users in the room
