@@ -24,7 +24,6 @@ export class RoomsController {
    */
   @Post()
   async create(@Body() createRoomDto: CreateRoomDto) {
-    console.log(createRoomDto.slug);
 
     const room = await this.roomsService.create(createRoomDto);
 
