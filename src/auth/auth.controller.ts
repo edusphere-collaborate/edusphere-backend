@@ -38,7 +38,7 @@ export class AuthController {
       throw new NotFoundException('User not found');
     }
 
-    console.log('User profile request:', user);
+    
     return this.authService.getProfile(user.id);
   }
 }
