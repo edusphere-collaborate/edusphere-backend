@@ -24,7 +24,6 @@ export class RoomsController {
    */
   @Post()
   async create(@Body() createRoomDto: CreateRoomDto) {
-
     const room = await this.roomsService.create(createRoomDto);
 
     return {
@@ -49,8 +48,14 @@ export class RoomsController {
     return rooms.map((room) => ({
       id: room.id,
       name: room.name,
-      creatorId: room.creatorId,
+      description: room.description,
+      slug: room.slug,
+      creator: room.creator,
+      userCount: room._count.users,
+      messageCount: room._count.messages,
+      mediaCount: room._count.media,
       createdAt: room.createdAt,
+      updatedAt: room.updatedAt,
     }));
   }
 
@@ -74,21 +79,27 @@ export class RoomsController {
       throw new NotFoundException(`Room with ID ${id} not found`);
     }
 
-    // If the room has no messages property or it's not an array, return empty array
-    const messages = Array.isArray(room['messages'])
-      ? room['messages'].map((msg: any) => ({
-          id: msg.id as string,
-          content: msg.content as string,
-          userId: msg.userId as string,
-          sentAt: msg.createdAt as Date,
-        }))
-      : [];
+    // Map messages from the optimized query result
+    const messages =
+      room.messages?.map((msg) => ({
+        id: msg.id,
+        content: msg.content,
+        userId: msg.user.id,
+        username: msg.user.username,
+        sentAt: msg.createdAt,
+      })) || [];
 
     return {
       id: room.id,
       name: room.name,
-      creatorId: room.creatorId,
+      description: room.description,
+      slug: room.slug,
+      creator: room.creator,
+      users: room.users,
       messages,
+      stats: room._count,
+      createdAt: room.createdAt,
+      updatedAt: room.updatedAt,
     };
   }
 

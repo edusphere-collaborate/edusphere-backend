@@ -168,7 +168,7 @@ export class ComplexityAnalyzer {
     operation: (size: number) => Promise<any>,
     sizes: number[] = [10, 100, 1000]
   ): Promise<{ size: number; timeMs: number }[]> {
-    const results = [];
+    const results: { size: number; timeMs: number }[] = [];
     
     for (const size of sizes) {
       const tracker = new PerformanceTracker();
@@ -187,14 +187,14 @@ export class ComplexityAnalyzer {
   static analyzeComplexity(results: { size: number; timeMs: number }[]): string {
     if (results.length < 2) return 'Insufficient data';
 
-    const ratios = [];
+    const ratios: number[] = [];
     for (let i = 1; i < results.length; i++) {
       const timeRatio = results[i].timeMs / results[i-1].timeMs;
       const sizeRatio = results[i].size / results[i-1].size;
       ratios.push(timeRatio / sizeRatio);
     }
 
-    const avgRatio = ratios.reduce((a, b) => a + b) / ratios.length;
+    const avgRatio = ratios.reduce((a, b) => a + b, 0) / ratios.length;
 
     if (avgRatio < 1.2) return 'O(1) - Constant';
     if (avgRatio < 2) return 'O(log n) - Logarithmic';

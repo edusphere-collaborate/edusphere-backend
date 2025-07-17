@@ -1,4 +1,3 @@
-import { NotFoundException } from '@nestjs/common';
 import {
   ConnectedSocket,
   MessageBody,
@@ -50,9 +49,10 @@ export class RoomsGatewayGateway {
   @SubscribeMessage('send-message')
   handleSendMessage(
     @MessageBody() data: SendMessageDto,
-    @ConnectedSocket() client: Socket,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    @ConnectedSocket() _client: Socket,
   ) {
-    // const message = await this.roomService.
+    // TODO: Implement message handling
     console.log('Message received:', data);
   }
 }
