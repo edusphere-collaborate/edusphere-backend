@@ -8,13 +8,8 @@ import { PrismaService } from '../prisma/prisma.service';
 import { JwtService } from '@nestjs/jwt';
 import { UserLoginDto } from './dto/user-login.dto';
 import { RegisterUserDto } from './dto/register-user.dto';
+import { JWTPayload } from './interfaces/jwt-payload.interface';
 import * as bcrypt from 'bcrypt';
-
-// Define the JwtPayload interface
-interface JwtPayload {
-  sub: string;
-  email: string;
-}
 
 @Injectable()
 export class AuthService {
@@ -26,8 +21,16 @@ export class AuthService {
   /**
    * Central method to create token using standard payload
    */
-  private async generateToken(user: { id: string; email: string }) {
-    const payload: JwtPayload = { sub: user.id, email: user.email };
+  private async generateToken(user: {
+    id: string;
+    email: string;
+    role: any;
+  }): Promise<string> {
+    const payload: JWTPayload = {
+      sub: user.id,
+      email: user.email,
+      isAdmin: user.role === 'ADMIN',
+    };
     return this.jwtService.signAsync(payload);
   }
 
@@ -66,7 +69,7 @@ export class AuthService {
         password: hashedPassword,
         firstName: firstName || '',
         lastName: lastName || '',
-        role: 'USER', // Default role, adjust as needed
+        role: 'User', // Default role, adjust as needed
       },
       select: {
         id: true,
@@ -121,10 +124,7 @@ export class AuthService {
   async validateUser(loginDto: UserLoginDto) {
     const user = await this.prismaService.user.findFirst({
       where: {
-        OR: [
-          { email: loginDto.identifier },
-          { username: loginDto.identifier },
-        ],
+        OR: [{ email: loginDto.identifier }, { username: loginDto.identifier }],
         deletedAt: null,
       },
     });

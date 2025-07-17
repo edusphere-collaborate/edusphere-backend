@@ -14,7 +14,9 @@ import { JwtStrategy } from './strategies/jwt.strategy';
     JwtModule.register({
       secret: (() => {
         if (!process.env.JWT_SECRET) {
-          throw new Error('JWT_SECRET environment variable is not set. Please configure it to ensure application security.');
+          throw new Error(
+            'JWT_SECRET environment variable is not set. Please configure it to ensure application security.',
+          );
         }
         return process.env.JWT_SECRET;
       })(),

@@ -1,6 +1,7 @@
 import {
   IsEmail,
   IsNotEmpty,
+  IsOptional,
   IsString,
   MinLength,
   MaxLength,
@@ -12,13 +13,13 @@ export class RegisterUserDto {
   @MaxLength(30)
   username: string;
 
+  @IsOptional()
   @IsString({ message: 'First Name must be a string' })
-  @IsNotEmpty({ message: 'First Name must not be empty' })
-  firstName: string;
+  firstName?: string;
 
+  @IsOptional()
   @IsString({ message: 'Last Name must be a string' })
-  @IsNotEmpty({ message: 'Last Name must not be empty' })
-  lastName: string;
+  lastName?: string;
 
   @IsEmail({}, { message: 'Email must be a valid email address' })
   @MaxLength(50, { message: 'Email must not exceed 50 characters' })

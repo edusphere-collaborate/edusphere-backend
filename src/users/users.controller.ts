@@ -9,12 +9,18 @@ import {
   Query,
   UseGuards,
   Req,
+  UnauthorizedException,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { RegisterUserDto } from '../auth/dto/register-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { JWTAuthGuard } from '../auth/guards/jwt.guard';
+import { AuthenticatedUser } from '../auth/interfaces/jwt-payload.interface';
 import { Request } from 'express';
+
+interface AuthenticatedRequest extends Request {
+  user: AuthenticatedUser;
+}
 
 @Controller('users')
 export class UsersController {
@@ -29,8 +35,11 @@ export class UsersController {
    */
   @Post()
   @UseGuards(JWTAuthGuard)
-  async create(@Req() req: Request, @Body() createUserDto: RegisterUserDto) {
-    const user = req.user as any;
+  async create(
+    @Req() req: AuthenticatedRequest,
+    @Body() createUserDto: RegisterUserDto,
+  ) {
+    const user = req.user;
     if (!user || !user.isAdmin) {
       throw new UnauthorizedException('Admin access required');
     }
@@ -57,11 +66,11 @@ export class UsersController {
   @Get()
   @UseGuards(JWTAuthGuard)
   async findAll(
-    @Req() req: Request,
+    @Req() req: AuthenticatedRequest,
     @Query('skip') skip?: string,
     @Query('take') take?: string,
   ) {
-    const user = req.user as any;
+    const user = req.user;
     if (!user || !user.isAdmin) {
       throw new UnauthorizedException('Admin access required');
     }
@@ -89,8 +98,8 @@ export class UsersController {
    */
   @Get(':id')
   @UseGuards(JWTAuthGuard)
-  async findOne(@Req() req: Request, @Param('id') id: string) {
-    const user = req.user as any;
+  async findOne(@Req() req: AuthenticatedRequest, @Param('id') id: string) {
+    const user = req.user;
     if (!user || (!user.isAdmin && user.id !== id)) {
       throw new UnauthorizedException('Unauthorized access to profile');
     }
@@ -138,11 +147,11 @@ export class UsersController {
   @Patch(':id')
   @UseGuards(JWTAuthGuard)
   async update(
-    @Req() req: Request,
+    @Req() req: AuthenticatedRequest,
     @Param('id') id: string,
     @Body() updateUserDto: UpdateUserDto,
   ) {
-    const user = req.user as any;
+    const user = req.user;
     if (!user || (!user.isAdmin && user.id !== id)) {
       throw new UnauthorizedException('Unauthorized access to profile');
     }
@@ -167,8 +176,8 @@ export class UsersController {
    */
   @Delete(':id')
   @UseGuards(JWTAuthGuard)
-  async remove(@Req() req: Request, @Param('id') id: string) {
-    const user = req.user as any;
+  async remove(@Req() req: AuthenticatedRequest, @Param('id') id: string) {
+    const user = req.user;
     if (!user || !user.isAdmin) {
       throw new UnauthorizedException('Admin access required');
     }
