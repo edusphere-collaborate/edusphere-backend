@@ -5,8 +5,7 @@ import { MediaService } from 'src/media/media.service';
 
 @Global()
 @Module({
-  imports: [PrismaModule],
-  providers: [PrismaService, MediaService],
+  providers: [PrismaService],
   exports: [PrismaService, MediaService], // ensure PrismaService is available app-wide
   controllers: [MediaController],
 })
