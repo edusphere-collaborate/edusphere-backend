@@ -1,0 +1,26 @@
+name: Ping Backend Health
+
+on:
+  schedule:
+    # Run every 5 minutes
+    - cron: '*/5 * * * *'
+  workflow_dispatch: # Allow manual trigger from GitHub UI
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check backend health
+        run: |
+          echo "🚀 Pinging backend health endpoint..."
+          for i in {1..60}
+          do
+            STATUS=$(curl -s -o /dev/null -w "%{http_code}" https://edusphere-backend-n1r8.onrender.com/health)
+            if [ "$STATUS" -eq 200 ]; then
+              echo "✅ Backend is healthy (HTTP 200)"
+            else
+              echo "❌ Backend returned status $STATUS"
+            fi
+            sleep 5
+          done
