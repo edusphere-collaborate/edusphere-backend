@@ -8,10 +8,8 @@ import {
   Param,
   Post,
   Req,
-  Res,
   UseGuards,
 } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
 import { AuthService } from './auth.service';
 import { RegisterUserDto } from './dto/register-user.dto';
 import { UserLoginDto } from './dto/user-login.dto';
@@ -32,12 +30,10 @@ import { AuthGuard } from '@nestjs/passport';
 interface AuthenticatedRequest extends Request {
   user: AuthenticatedUser;
 }
+
 @Controller('auth')
 export class AuthController {
-  constructor(
-    private readonly authService: AuthService,
-    private readonly configService: ConfigService,
-  ) {}
+  constructor(private readonly authService: AuthService) {}
 
   /**
    * POST /auth/register
@@ -158,36 +154,6 @@ export class AuthController {
       dto.newPassword,
       dto.confirmPassword,
     );
-  }
-
-  @Get('google')
-  @UseGuards(AuthGuard('google'))
-  googleAuth() {
-    // This route just initiates Google OAuth
-    // The guard handles the redirect to Google
-  }
-
-  @Get('google/redirect')
-  @UseGuards(AuthGuard('google'))
-  async googleAuthRedirect(@Req() req: any, @Res() res: any) {
-    try {
-      // Process the authenticated Google user
-      const tokenData = await this.authService.googleLogin(req.user);
-
-      // Redirect to frontend with the token
-      const frontendUrl = this.configService.get('APP_BASE_URL');
-      const redirectUrl = `${frontendUrl}/login/success?token=${tokenData.access_token}`;
-
-      // Log the redirect URL for debugging
-      console.log(`Redirecting to: ${redirectUrl}`);
-
-      return res.redirect(redirectUrl);
-    } catch (error) {
-      console.error('Google auth redirect error:', error);
-      return res.redirect(
-        `${this.configService.get('APP_BASE_URL')}/login/error?message=${encodeURIComponent('Authentication failed')}`,
-      );
-    }
   }
 
   // Step 1: Redirect user to GitHub

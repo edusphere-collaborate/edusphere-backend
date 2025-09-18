@@ -541,27 +541,27 @@ export class AuthService {
   }
 
   async googleLogin(googleUser: any) {
-    // First validate or create the user
-    const user = await this.validateOAuthLogin(googleUser);
-
-    // Generate a JWT token
-    const token = await this.generateToken({
+  // First validate or create the user
+  const user = await this.validateOAuthLogin(googleUser);
+  
+  // Generate a JWT token
+  const token = await this.generateToken({
+    id: user.id,
+    email: user.email as string,
+    role: user.role,
+  });
+  
+  return {
+    access_token: token,
+    user: {
       id: user.id,
-      email: user.email as string,
-      role: user.role,
-    });
-
-    return {
-      access_token: token,
-      user: {
-        id: user.id,
-        email: user.email,
-        firstName: user.firstName,
-        lastName: user.lastName,
-        picture: user.picture,
-      },
-    };
-  }
+      email: user.email,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      picture: user.picture,
+    }
+  };
+}
 }
 
 /** small helper to mask email **/

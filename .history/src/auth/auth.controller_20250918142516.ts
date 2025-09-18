@@ -36,8 +36,9 @@ interface AuthenticatedRequest extends Request {
 export class AuthController {
   constructor(
     private readonly authService: AuthService,
-    private readonly configService: ConfigService,
+    private readonly configService: ConfigService,private readonly authService: AuthService
   ) {}
+  constructor(private readonly authService: AuthService) {}
 
   /**
    * POST /auth/register

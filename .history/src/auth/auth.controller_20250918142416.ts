@@ -11,7 +11,6 @@ import {
   Res,
   UseGuards,
 } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
 import { AuthService } from './auth.service';
 import { RegisterUserDto } from './dto/register-user.dto';
 import { UserLoginDto } from './dto/user-login.dto';
@@ -32,12 +31,10 @@ import { AuthGuard } from '@nestjs/passport';
 interface AuthenticatedRequest extends Request {
   user: AuthenticatedUser;
 }
+
 @Controller('auth')
 export class AuthController {
-  constructor(
-    private readonly authService: AuthService,
-    private readonly configService: ConfigService,
-  ) {}
+  constructor(private readonly authService: AuthService) {}
 
   /**
    * POST /auth/register

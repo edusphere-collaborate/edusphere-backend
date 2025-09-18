@@ -38,6 +38,7 @@ export class AuthController {
     private readonly authService: AuthService,
     private readonly configService: ConfigService,
   ) {}
+  constructor(private readonly authService: AuthService) {}
 
   /**
    * POST /auth/register
