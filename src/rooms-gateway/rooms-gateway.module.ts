@@ -1,9 +1,10 @@
 import { Module } from '@nestjs/common';
-import { RoomsGatewayGateway } from './rooms-gateway.gateway';
-import { RoomsModule } from 'src/rooms/rooms.module';
+import { PrismaService } from 'src/prisma/prisma.service';
+import { RoomsGatewayService } from './rooms-gateway.service';
+import { RoomsService } from 'src/rooms/rooms.service';
 
 @Module({
-  imports: [RoomsModule],
-  providers: [RoomsGatewayGateway],
+  providers: [PrismaService, RoomsGatewayService, RoomsService],
+  exports: [RoomsGatewayService],
 })
 export class RoomsGatewayModule {}

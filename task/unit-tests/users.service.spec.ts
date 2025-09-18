@@ -1,8 +1,13 @@
-import { Test, TestingModule } from '@nestjs/testing';
+// import { Test, TestingModule } from '@nestjs/testing';
 import { NotFoundException } from '@nestjs/common';
-import { UsersService } from '../../../src/users/users.service';
-import { PrismaService } from '../../../src/prisma/prisma.service';
-import { createTestingModule, mockData, PerformanceTracker, ComplexityAnalyzer } from '../../utils/test-helpers';
+import { UsersService } from 'src/users/users.service';
+import { PrismaService } from 'src/prisma/prisma.service';
+import {
+  createTestingModule,
+  mockData,
+  PerformanceTracker,
+  ComplexityAnalyzer,
+} from '../../utils/test-helpers';
 
 describe('UsersService - Comprehensive Tests', () => {
   let service: UsersService;
@@ -27,7 +32,7 @@ describe('UsersService - Comprehensive Tests', () => {
       const createUserDto = {
         username: 'newuser',
         firstName: 'New',
-        lastName: 'User', 
+        lastName: 'User',
         email: 'new@example.com',
         password: 'password123',
       };
@@ -156,21 +161,23 @@ describe('UsersService - Comprehensive Tests', () => {
     it('should analyze findAll performance complexity', async () => {
       (prisma.user.findMany as jest.Mock).mockImplementation(async () => {
         // Simulate constant time complexity for findAll (should be O(1) with proper indexing)
-        await new Promise(resolve => setTimeout(resolve, 5));
+        await new Promise((resolve) => setTimeout(resolve, 5));
         return [mockData.user];
       });
 
       const results = await ComplexityAnalyzer.measureTimeComplexity(
         async (size) => {
           // Since findAll doesn't take size parameter, we'll test multiple calls
-          const promises = Array(size / 10).fill(null).map(() => service.findAll());
+          const promises = Array(size / 10)
+            .fill(null)
+            .map(() => service.findAll());
           await Promise.all(promises);
         },
-        [10, 50, 100]
+        [10, 50, 100],
       );
 
       const complexity = ComplexityAnalyzer.analyzeComplexity(results);
-      
+
       // FindAll should be O(1) for database query (complexity depends on result set size)
       expect(complexity).toMatch(/(O\(1\)|O\(log n\)|O\(n\))/);
     });
@@ -178,7 +185,7 @@ describe('UsersService - Comprehensive Tests', () => {
     it('should handle large result sets efficiently', async () => {
       const batchSize = 1000;
       (prisma.user.findMany as jest.Mock).mockResolvedValue(
-        Array(batchSize).fill(mockData.user)
+        Array(batchSize).fill(mockData.user),
       );
 
       const { metrics } = await PerformanceTracker.measure(async () => {
@@ -192,7 +199,9 @@ describe('UsersService - Comprehensive Tests', () => {
 
   describe('Error Handling', () => {
     it('should handle database connection errors', async () => {
-      (prisma.user.create as jest.Mock).mockRejectedValue(new Error('Database connection failed'));
+      (prisma.user.create as jest.Mock).mockRejectedValue(
+        new Error('Database connection failed'),
+      );
 
       const createUserDto = {
         username: 'erroruser',
@@ -202,7 +211,9 @@ describe('UsersService - Comprehensive Tests', () => {
         password: 'password123',
       };
 
-      await expect(service.create(createUserDto)).rejects.toThrow('Database connection failed');
+      await expect(service.create(createUserDto)).rejects.toThrow(
+        'Database connection failed',
+      );
     });
 
     it('should handle invalid input gracefully', async () => {
@@ -233,7 +244,9 @@ describe('UsersService - Comprehensive Tests', () => {
         aiQueries: [mockData.aiQuery],
       };
 
-      (prisma.user.findUnique as jest.Mock).mockResolvedValue(userWithRelations);
+      (prisma.user.findUnique as jest.Mock).mockResolvedValue(
+        userWithRelations,
+      );
 
       const result = await service.findOne('user-id-1');
 
@@ -263,7 +276,7 @@ describe('UsersService - Comprehensive Tests', () => {
       const users = await service.findAll(0, 10);
 
       // Verify that sensitive fields are handled appropriately
-      users.forEach(user => {
+      users.forEach((user) => {
         expect(user).toHaveProperty('password'); // Should be hashed
         expect(user.password).not.toBe('plaintext'); // Should never be plaintext
       });

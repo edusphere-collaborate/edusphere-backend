@@ -1,0 +1,160 @@
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "debian-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String    @id @default(uuid())
+  username     String    @unique @db.VarChar(30)
+  firstName    String    @default("")
+  lastName     String    @default("")
+  email        String    @unique @db.VarChar(50)
+  password     String
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  role         UserRole? @default(User)
+  deletedAt    DateTime?
+  aiQueries    AIQuery[] @relation("UserAIQueries")
+  media        Media[]   @relation("UserMedia")
+  messages     Message[] @relation("UserMessages")
+  createdRooms Room[]    @relation("createdRooms")
+  rooms        Room[]    @relation("UserRooms")
+
+  emailVerified      Boolean   @default(false)
+  emailVerifiedAt    DateTime?
+  passwordChangedAt  DateTime? @default(now())
+  passwordHistory    PasswordHistory[]
+  emailTokens        EmailVerificationToken[]
+  passwordTokens     PasswordResetToken[]
+  tokens             Token[]
+}
+
+
+model EmailVerificationToken {
+  id         String   @id @default(uuid())
+  userId     String
+  email      String
+  tokenHash  String   @unique
+  expiresAt  DateTime
+  usedAt     DateTime?
+  createdAt  DateTime @default(now())
+  ipAddress  String?
+  userAgent  String?
+  user       User     @relation(fields: [userId], references: [id])
+}
+
+
+model PasswordResetToken {
+  id         String   @id @default(uuid())
+  userId     String
+  email      String
+  tokenHash  String   @unique
+  expiresAt  DateTime
+  usedAt     DateTime?
+  createdAt  DateTime @default(now())
+  ipAddress  String?
+  userAgent  String?
+  user       User     @relation(fields: [userId], references: [id])
+}
+
+
+model EmailAttempt {
+  id          String   @id @default(uuid())
+  email       String
+  attemptType String
+  ipAddress   String
+  createdAt   DateTime @default(now())
+}
+
+model PasswordHistory {
+  id            String   @id @default(uuid())
+  userId        String
+  passwordHash  String
+  createdAt     DateTime @default(now())
+  user          User     @relation(fields: [userId], references: [id])
+}
+
+model Token {
+  id        String   @id @default(uuid())
+  type      TokenType
+  tokenHash String   // hashed token
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  @@index([tokenHash])
+  @@index([userId, type])
+}
+
+enum TokenType {
+  EMAIL_VERIFICATION
+  PASSWORD_RESET
+}
+
+model Room {
+  id          String    @id @default(uuid())
+  name        String
+  description String?
+  slug        String    @unique
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  deletedAt   DateTime?
+  creatorId   String
+  media       Media[]
+  messages    Message[] @relation("RoomMessages")
+  creator     User      @relation("createdRooms", fields: [creatorId], references: [id])
+  users       User[]    @relation("UserRooms")
+}
+
+model Message {
+  id        String    @id @default(uuid())
+  content   String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+  userId    String
+  roomId    String
+  room      Room      @relation("RoomMessages", fields: [roomId], references: [id])
+  user      User      @relation("UserMessages", fields: [userId], references: [id])
+}
+
+model Media {
+  id        String    @id @default(uuid())
+  url       String
+  type      MediaType
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  userId    String
+  roomId    String
+  room      Room      @relation(fields: [roomId], references: [id])
+  user      User      @relation("UserMedia", fields: [userId], references: [id])
+}
+
+model AIQuery {
+  id        String    @id @default(uuid())
+  query     String
+  response  Json?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+  userId    String
+  user      User      @relation("UserAIQueries", fields: [userId], references: [id])
+}
+
+enum MediaType {
+  IMAGE
+  VIDEO
+}
+
+enum UserRole {
+  User
+  ADMIN
+  MODERATOR
+  AI
+}
