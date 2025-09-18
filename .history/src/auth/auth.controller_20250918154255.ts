@@ -18,7 +18,7 @@ import { UserLoginDto } from './dto/user-login.dto';
 import { LocalGuard } from './guards/local.guard';
 import { JWTAuthGuard } from './guards/jwt.guard';
 import { AuthenticatedUser } from './interfaces/jwt-payload.interface';
-import { Request, Response } from 'express';
+import { Request } from 'express';
 import { Throttle, ThrottlerGuard } from '@nestjs/throttler';
 import { SendVerificationDto } from './dto/send-verification.dto';
 import { VerifyEmailDto } from './dto/verify-email.dto';

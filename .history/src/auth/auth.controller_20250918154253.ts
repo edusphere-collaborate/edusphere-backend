@@ -18,7 +18,7 @@ import { UserLoginDto } from './dto/user-login.dto';
 import { LocalGuard } from './guards/local.guard';
 import { JWTAuthGuard } from './guards/jwt.guard';
 import { AuthenticatedUser } from './interfaces/jwt-payload.interface';
-import { Request, Response } from 'express';
+import { Request } from 'express';
 import { Throttle, ThrottlerGuard } from '@nestjs/throttler';
 import { SendVerificationDto } from './dto/send-verification.dto';
 import { VerifyEmailDto } from './dto/verify-email.dto';
@@ -201,7 +201,7 @@ export class AuthController {
   @Get('github/redirect')
   @UseGuards(AuthGuard('github'))
   async githubLoginCallback(@Req() req, @Res() res: Response) {
-    // req.user is coming from GitHubStrategy.validate()
+        // req.user is coming from GitHubStrategy.validate()
     console.log('GitHub User:', req.user);
 
     // Save or fetch user from DB
@@ -214,5 +214,6 @@ export class AuthController {
     return res.redirect(
       `https://edusphere-learning-platform.vercel.app/login/success?token=${token}`,
     );
+
   }
 }

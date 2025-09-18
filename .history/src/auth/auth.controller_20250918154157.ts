@@ -18,7 +18,7 @@ import { UserLoginDto } from './dto/user-login.dto';
 import { LocalGuard } from './guards/local.guard';
 import { JWTAuthGuard } from './guards/jwt.guard';
 import { AuthenticatedUser } from './interfaces/jwt-payload.interface';
-import { Request, Response } from 'express';
+import { Request } from 'express';
 import { Throttle, ThrottlerGuard } from '@nestjs/throttler';
 import { SendVerificationDto } from './dto/send-verification.dto';
 import { VerifyEmailDto } from './dto/verify-email.dto';
@@ -193,26 +193,14 @@ export class AuthController {
   // Step 1: Redirect user to GitHub
   @Get('github')
   @UseGuards(AuthGuard('github'))
-  async githubLogin() {
+  async githubLogin(@Req() req, @Res() res: Response) {
     return { msg: 'Redirecting to GitHub...' };
   }
 
   // Step 2: GitHub redirects here after login
   @Get('github/redirect')
   @UseGuards(AuthGuard('github'))
-  async githubLoginCallback(@Req() req, @Res() res: Response) {
-    // req.user is coming from GitHubStrategy.validate()
-    console.log('GitHub User:', req.user);
-
-    // Save or fetch user from DB
-    // const user = await this.authService.validateOAuthLogin(req.user);
-
-    // Generate JWT
-    const token = 'your-generated-jwt'; // replace with this.authService.generateJwt(req.user);
-
-    // Redirect to frontend with token
-    return res.redirect(
-      `https://edusphere-learning-platform.vercel.app/login/success?token=${token}`,
-    );
+  async githubLoginCallback() {
+    return { msg: 'GitHub login successful!' };
   }
 }
