@@ -33,7 +33,10 @@ async function bootstrap() {
 
   app.useWebSocketAdapter(new IoAdapter(app));
 
-  await app.listen(process.env.PORT ?? 3000);
+  // IMPORTANT: Use Render's PORT and bind to 0.0.0.0
+  const port = process.env.PORT || 3001;
+  await app.listen(port, '0.0.0.0');
+  console.log(`🚀 Application is running on port ${port}`);
 }
 bootstrap().catch((error) => {
   console.error('Failed to start application:', error);
