@@ -14,8 +14,7 @@ export class AppController {
   getHealth(@Res() res: Response): void {
     res.status(200).json({
       status: 'ok',
-      uptime: process.uptime(),
-      timestamp: Date.now(),
+      uptime: 
     });
   }
 }
