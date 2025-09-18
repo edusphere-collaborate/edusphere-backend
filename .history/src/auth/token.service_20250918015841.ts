@@ -22,10 +22,10 @@ export class TokenService {
   ): Promise<{ rawToken: string; expiresAt: Date }> {
     // Generate a random token
     const rawToken = uuidv4();
-
+    
     // Hash the token for storage
     const tokenHash = hashToken(rawToken);
-
+    
     // Calculate expiration date
     const expiresAt = new Date();
     expiresAt.setSeconds(expiresAt.getSeconds() + expiresInSeconds);

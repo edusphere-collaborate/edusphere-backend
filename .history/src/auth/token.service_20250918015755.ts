@@ -22,10 +22,10 @@ export class TokenService {
   ): Promise<{ rawToken: string; expiresAt: Date }> {
     // Generate a random token
     const rawToken = uuidv4();
-
+    
     // Hash the token for storage
     const tokenHash = hashToken(rawToken);
-
+    
     // Calculate expiration date
     const expiresAt = new Date();
     expiresAt.setSeconds(expiresAt.getSeconds() + expiresInSeconds);
@@ -47,7 +47,7 @@ export class TokenService {
    * Validates and consumes a token
    * @param rawToken Raw token string
    * @param type Token type
-   * @returns Token record with user if valid, null otherwise
+   * @returns Token record if valid, null otherwise
    */
   async validateAndConsumeToken(rawToken: string, type: TokenType) {
     // Hash the token to compare with stored hash
@@ -59,7 +59,7 @@ export class TokenService {
         tokenHash,
         type,
         expiresAt: { gt: new Date() }, // Not expired
-        // No consumedAt field, we'll use soft delete instead
+        consumedAt: null, // Not consumed
       },
       include: { user: true },
     });
@@ -68,10 +68,10 @@ export class TokenService {
       return null;
     }
 
-    // Instead of marking as consumed, we'll delete the token
-    // This effectively consumes it as it can't be used again
-    await this.prismaService.token.delete({
+    // Mark the token as consumed
+    await this.prismaService.token.update({
       where: { id: token.id },
+      data: { consumedAt: new Date() },
     });
 
     return token;

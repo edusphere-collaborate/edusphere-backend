@@ -15,22 +15,20 @@ import { JWTPayload } from './interfaces/jwt-payload.interface';
 import * as bcrypt from 'bcrypt';
 import { MailService } from 'src/shared/mail/mail.service';
 import { TokenType } from '@prisma/client';
-import { TokenService } from './token.service';
 import { v4 as uuidv4 } from 'uuid';
 import { subHours } from 'date-fns';
-import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class AuthService {
   private readonly SALT_ROUNDS = 12; // bcrypt rounds
   private readonly VERIFICATION_EXPIRES = 24 * 60 * 60; // 24 hours
   private readonly RESET_EXPIRES = 60 * 60; // 1 hour
+  tokenService: any;
+  config: any;
   constructor(
     private readonly prismaService: PrismaService,
     private readonly jwtService: JwtService,
     private readonly mailService: MailService,
-    private readonly tokenService: TokenService,
-    private readonly config: ConfigService,
   ) {}
 
   /**
@@ -153,11 +151,7 @@ export class AuthService {
       },
     });
 
-    if (
-      !user ||
-      !user.password ||
-      !(await bcrypt.compare(loginDto.password, user.password))
-    ) {
+    if (!user || !user.password || !(await bcrypt.compare(loginDto.password, user.password))) {
       throw new UnauthorizedException('Invalid credentials');
     }
 
@@ -240,10 +234,9 @@ export class AuthService {
     }
 
     // Optionally check email matches
-    if (email && tokenRecord.user?.email !== email) {
+    if (email && tokenRecord.user.email !== email) {
       throw new ForbiddenException('Token does not match email');
     }
-    
     const user = await this.prismaService.user.update({
       where: { id: tokenRecord.userId },
       data: { emailVerified: true },
@@ -360,14 +353,7 @@ export class AuthService {
       return { success: false, message: 'Invalid or expired token' };
     }
 
-    // Get the user from the token's userId
-    const user = await this.prismaService.user.findUnique({
-      where: { id: tokenRecord.userId },
-    });
-    
-    if (!user) {
-      return { success: false, message: 'User not found' };
-    }
+    const user = tokenRecord.user;
 
     // Check password reuse (last 5)
     const lastPasswords = await this.prismaService.passwordHistory.findMany({
@@ -413,17 +399,15 @@ export class AuthService {
 
     // Optional: notify user
     const d = new Date();
-    if (user.email) {
-      await this.mailService.sendMail(
-        user.email,
-        'Your EduSphere password was changed',
-        this.mailService.passwordChangedNotificationHtml(
-          user.firstName ?? '',
-          d.toLocaleDateString(),
-          d.toLocaleTimeString(),
-        ),
-      );
-    }
+    await this.mailService.sendMail(
+      user.email,
+      'Your EduSphere password was changed',
+      this.mailService.passwordChangedNotificationHtml(
+        user.firstName ?? '',
+        d.toLocaleDateString(),
+        d.toLocaleTimeString(),
+      ),
+    );
 
     return {
       success: true,
@@ -450,8 +434,7 @@ export class AuthService {
       where: { id: userId },
     });
     if (!user) throw new NotFoundException('User not found');
-    if (!user.password)
-      throw new ForbiddenException('Cannot change password for OAuth users');
+    if (!user.password) throw new ForbiddenException('Cannot change password for OAuth users');
 
     const ok = await bcrypt.compare(currentPassword, user.password);
     if (!ok) throw new ForbiddenException('Current password incorrect');
@@ -494,8 +477,7 @@ export class AuthService {
       });
     }
 
-    if (user.email) {
-      // Only send email if email exists
+    if (user.email) { // Only send email if email exists
       const d = new Date();
       await this.mailService.sendMail(
         user.email,

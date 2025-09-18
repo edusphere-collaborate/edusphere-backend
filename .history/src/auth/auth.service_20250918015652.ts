@@ -240,10 +240,9 @@ export class AuthService {
     }
 
     // Optionally check email matches
-    if (email && tokenRecord.user?.email !== email) {
+    if (email && tokenRecord.user.email !== email) {
       throw new ForbiddenException('Token does not match email');
     }
-    
     const user = await this.prismaService.user.update({
       where: { id: tokenRecord.userId },
       data: { emailVerified: true },
@@ -360,14 +359,7 @@ export class AuthService {
       return { success: false, message: 'Invalid or expired token' };
     }
 
-    // Get the user from the token's userId
-    const user = await this.prismaService.user.findUnique({
-      where: { id: tokenRecord.userId },
-    });
-    
-    if (!user) {
-      return { success: false, message: 'User not found' };
-    }
+    const user = tokenRecord.user;
 
     // Check password reuse (last 5)
     const lastPasswords = await this.prismaService.passwordHistory.findMany({
