@@ -33,7 +33,6 @@ async function bootstrap() {
       'http://localhost:5174',
       'http://localhost:5175',
       'https://edusphere-learning-platform.vercel.app',
-      'https://edusphere-backend-n1r8.onrender.com',
     ],
     credentials: true,
   });
